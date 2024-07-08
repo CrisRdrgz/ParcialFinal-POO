@@ -1,14 +1,13 @@
 package org.uca.proyectobancocentral.data_access_object;
 
 import org.uca.proyectobancocentral.Clases.Cliente;
+import org.uca.proyectobancocentral.singleton.DatabaseConnection;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ClienteDAO {
-    private static final String url = "jdbc:sqlserver://LAPTOP-SJ7S2DJL:1433;databaseName=BancoCentral;user=bancoadmin;password=12345;integratedSecurity=false;encrypt=false;";
-
     public void crearTablaCliente(){
         String query = "create table Cliente (" +
                 "id int primary key identity, " +
@@ -16,7 +15,7 @@ public class ClienteDAO {
                 "direccion varchar(100), " +
                 "telefono varchar(20));";
         try{
-            Connection connection = DriverManager.getConnection(url);
+            Connection connection = DatabaseConnection.getInstance().getConnection();
             Statement statement = connection.createStatement();
             statement.execute(query);
             System.out.println("Tabla Cliente registrada con exito");
@@ -30,7 +29,7 @@ public class ClienteDAO {
     public void registrarCliente(Cliente cliente){
         String query = "insert into Clientes (nombre_completo, direccion, telefono) values (?,?,?)";
         try{
-            Connection connection = DriverManager.getConnection(url);
+            Connection connection = DatabaseConnection.getInstance().getConnection();
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, cliente.getNombreCompleto());
             statement.setString(2, cliente.getDireccion());
@@ -49,7 +48,7 @@ public class ClienteDAO {
                 "inner join compra co on co.id_tarjeta = t.id where facilitador = ?" +
                 " group by c.id, c.nombre_completo, c.direccion, c.telefono";
         try{
-            Connection connection = DriverManager.getConnection(url);
+            Connection connection = DatabaseConnection.getInstance().getConnection();
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, facilitador);
             ResultSet resultSet = statement.executeQuery();
@@ -70,5 +69,19 @@ public class ClienteDAO {
             e.printStackTrace();
         }
         return clientes;
+    }
+
+    public void BorrarTablaCliente(){
+        String query = "drop table Cliente";
+        try{
+            Connection connection = DatabaseConnection.getInstance().getConnection();
+            Statement statement = connection.createStatement();
+            statement.execute(query);
+            System.out.println("Tabla Cliente borrada con exito");
+            statement.close();
+            connection.close();
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
     }
 }

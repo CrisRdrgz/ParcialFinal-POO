@@ -4,8 +4,11 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.uca.proyectobancocentral.singleton.DatabaseConnection;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.SQLException;
 
 public class HelloApplication extends Application {
     @Override
@@ -17,7 +20,9 @@ public class HelloApplication extends Application {
         stage.show();
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
+        String username = System.getProperty("user.name");
+        System.out.println(username);
         launch();
     }
 }
