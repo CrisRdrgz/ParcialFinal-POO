@@ -10,10 +10,10 @@ import java.util.List;
 public class ClienteDAO {
     public void crearTablaCliente(){
         String query = "create table Cliente (" +
-                "id int primary key identity, " +
-                "nombre_completo varchar(50), " +
-                "direccion varchar(100), " +
-                "telefono varchar(20));";
+                "id int primary key identity," +
+                "nombre_completo varchar(50) not null, " +
+                "direccion varchar(100) not null, " +
+                "telefono varchar(20) not null);";
         try{
             Connection connection = DatabaseConnection.getInstance().getConnection();
             Statement statement = connection.createStatement();
