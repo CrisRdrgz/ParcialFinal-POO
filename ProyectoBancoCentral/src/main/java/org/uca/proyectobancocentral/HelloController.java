@@ -9,8 +9,10 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import org.uca.proyectobancocentral.Clases.Cliente;
+import org.uca.proyectobancocentral.Clases.Compra;
 import org.uca.proyectobancocentral.Clases.Tarjeta;
 import org.uca.proyectobancocentral.data_access_object.ClienteDAO;
+import org.uca.proyectobancocentral.data_access_object.CompraDAO;
 import org.uca.proyectobancocentral.data_access_object.TarjetaDAO;
 
 import java.sql.SQLException;
@@ -36,6 +38,7 @@ public class HelloController{
 
     private ClienteDAO clienteDAO = new ClienteDAO();
     private TarjetaDAO tarjetaDAO = new TarjetaDAO();
+    private CompraDAO compraDAO = new CompraDAO();
 
     public void initialize() {
         colIdReporteD.setCellFactory(new PropertyValueFactory<>("ID"));
@@ -46,8 +49,13 @@ public class HelloController{
         colTotalGastadoReporteD.setCellValueFactory(new PropertyValueFactory<>("Total gastado"));
         cbReporteD.getItems().addAll("Visa", "MasterCard", "American Express", "Discover", "Diners Club");
 
+        compraDAO.BorrarTablaCompra();
+        tarjetaDAO.BorrarTablaTarjeta();
+        clienteDAO.BorrarTablaCliente();
+
         clienteDAO.crearTablaCliente();
         tarjetaDAO.crearTablaTarjeta();
+        compraDAO.crearTablaCompra();
 
         Cliente cliente1 = new Cliente();
         cliente1.setNombreCompleto("Juan Miguel Perez Lopez");
@@ -171,13 +179,145 @@ public class HelloController{
         tarjeta10.setClienteId(3);
         tarjetaDAO.registrarTarjeta(tarjeta10);
 
-        Platform.runLater(() -> {
-            Stage stage = (Stage) cbReporteD.getScene().getWindow();
-            stage.setOnCloseRequest(event -> {
-                tarjetaDAO.BorrarTablaTarjeta();
-                clienteDAO.BorrarTablaCliente();
-            });
-        });
+        Compra compra1 = new Compra();
+        compra1.setFechaCompra(LocalDate.parse("2024-12-24"));
+        compra1.setMontoTotal(491.90);
+        compra1.setDescripcion("Regalos de Navidad");
+        compra1.setTarjetaId(5);
+        compraDAO.registrarCompra(compra1);
+
+        Compra compra2 = new Compra();
+        compra2.setFechaCompra(LocalDate.parse("2024-11-15"));
+        compra2.setMontoTotal(257.10);
+        compra2.setDescripcion("Compra de electrónica");
+        compra2.setTarjetaId(1);
+        compraDAO.registrarCompra(compra2);
+
+        Compra compra3 = new Compra();
+        compra3.setFechaCompra(LocalDate.parse("2024-10-10"));
+        compra3.setMontoTotal(75.20);
+        compra3.setDescripcion("Cena en restaurante");
+        compra3.setTarjetaId(8);
+        compraDAO.registrarCompra(compra3);
+
+        Compra compra4 = new Compra();
+        compra4.setFechaCompra(LocalDate.parse("2024-09-05"));
+        compra4.setMontoTotal(49.99);
+        compra4.setDescripcion("Compra de libros");
+        compra4.setTarjetaId(10);
+        compraDAO.registrarCompra(compra4);
+
+        Compra compra5 = new Compra();
+        compra5.setFechaCompra(LocalDate.parse("2024-08-20"));
+        compra5.setMontoTotal(307.45);
+        compra5.setDescripcion("Gastos médicos");
+        compra5.setTarjetaId(4);
+        compraDAO.registrarCompra(compra5);
+
+        Compra compra6 = new Compra();
+        compra6.setFechaCompra(LocalDate.parse("2024-07-30"));
+        compra6.setMontoTotal(150.75);
+        compra6.setDescripcion("Pago de servicios");
+        compra6.setTarjetaId(6);
+        compraDAO.registrarCompra(compra6);
+
+        Compra compra7 = new Compra();
+        compra7.setFechaCompra(LocalDate.parse("2024-06-14"));
+        compra7.setMontoTotal(128.90);
+        compra7.setDescripcion("Ropa nueva");
+        compra7.setTarjetaId(7);
+        compraDAO.registrarCompra(compra7);
+
+        Compra compra8 = new Compra();
+        compra8.setFechaCompra(LocalDate.parse("2024-05-25"));
+        compra8.setMontoTotal(220.90);
+        compra8.setDescripcion("Muebles para el hogar");
+        compra8.setTarjetaId(9);
+        compraDAO.registrarCompra(compra8);
+
+        Compra compra9 = new Compra();
+        compra9.setFechaCompra(LocalDate.parse("2024-04-10"));
+        compra9.setMontoTotal(45.60);
+        compra9.setDescripcion("Suscripción a servicios");
+        compra9.setTarjetaId(2);
+        compraDAO.registrarCompra(compra9);
+
+        Compra compra10 = new Compra();
+        compra10.setFechaCompra(LocalDate.parse("2024-03-18"));
+        compra10.setMontoTotal(99.99);
+        compra10.setDescripcion("Accesorios de tecnología");
+        compra10.setTarjetaId(4);
+        compraDAO.registrarCompra(compra10);
+
+        Compra compra11 = new Compra();
+        compra11.setFechaCompra(LocalDate.parse("2024-02-07"));
+        compra11.setMontoTotal(800.00);
+        compra11.setDescripcion("Viaje de fin de semana");
+        compra11.setTarjetaId(3);
+        compraDAO.registrarCompra(compra11);
+
+        Compra compra12 = new Compra();
+        compra12.setFechaCompra(LocalDate.parse("2024-01-22"));
+        compra12.setMontoTotal(69.00);
+        compra12.setDescripcion("Material de oficina");
+        compra12.setTarjetaId(7);
+        compraDAO.registrarCompra(compra12);
+
+        Compra compra13 = new Compra();
+        compra13.setFechaCompra(LocalDate.parse("2024-12-05"));
+        compra13.setMontoTotal(1340.50);
+        compra13.setDescripcion("Juguetes para niños");
+        compra13.setTarjetaId(6);
+        compraDAO.registrarCompra(compra13);
+
+        Compra compra14 = new Compra();
+        compra14.setFechaCompra(LocalDate.parse("2024-11-10"));
+        compra14.setMontoTotal(254.20);
+        compra14.setDescripcion("Compra en tienda de deportes");
+        compra14.setTarjetaId(10);
+        compraDAO.registrarCompra(compra14);
+
+        Compra compra15 = new Compra();
+        compra15.setFechaCompra(LocalDate.parse("2024-10-15"));
+        compra15.setMontoTotal(198.90);
+        compra15.setDescripcion("Supermercado");
+        compra15.setTarjetaId(1);
+        compraDAO.registrarCompra(compra15);
+
+        Compra compra16 = new Compra();
+        compra16.setFechaCompra(LocalDate.parse("2024-09-30"));
+        compra16.setMontoTotal(199.99);
+        compra16.setDescripcion("Equipos de cocina");
+        compra16.setTarjetaId(8);
+        compraDAO.registrarCompra(compra16);
+
+        Compra compra17 = new Compra();
+        compra17.setFechaCompra(LocalDate.parse("2024-08-10"));
+        compra17.setMontoTotal(105.80);
+        compra17.setDescripcion("Herramientas de jardín");
+        compra17.setTarjetaId(1);
+        compraDAO.registrarCompra(compra17);
+
+        Compra compra18 = new Compra();
+        compra18.setFechaCompra(LocalDate.parse("2024-07-05"));
+        compra18.setMontoTotal(500.00);
+        compra18.setDescripcion("Regalos de cumpleaños");
+        compra18.setTarjetaId(4);
+        compraDAO.registrarCompra(compra18);
+
+        Compra compra19 = new Compra();
+        compra19.setFechaCompra(LocalDate.parse("2024-06-22"));
+        compra19.setMontoTotal(130.00);
+        compra19.setDescripcion("Pago de membresía anual");
+        compra19.setTarjetaId(8);
+        compraDAO.registrarCompra(compra19);
+
+        Compra compra20 = new Compra();
+        compra20.setFechaCompra(LocalDate.parse("2024-05-11"));
+        compra20.setMontoTotal(49.99);
+        compra20.setDescripcion("Suscripción a revista");
+        compra20.setTarjetaId(6);
+        compraDAO.registrarCompra(compra20);
     }
 
     @FXML

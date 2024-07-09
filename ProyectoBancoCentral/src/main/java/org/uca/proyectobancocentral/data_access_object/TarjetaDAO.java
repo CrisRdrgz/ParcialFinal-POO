@@ -49,7 +49,7 @@ public class TarjetaDAO {
     }
 
     public void BorrarTablaTarjeta(){
-        String query = "drop table Tarjeta";
+        String query = "drop table if exists Tarjeta";
         try{
             Connection connection = DatabaseConnection.getInstance().getConnection();
             Statement statement = connection.createStatement();
