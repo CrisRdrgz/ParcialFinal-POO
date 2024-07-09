@@ -53,6 +53,7 @@ public class ClienteDAO {
             statement.setString(1, facilitador);
             ResultSet resultSet = statement.executeQuery();
             while(resultSet.next()){
+                System.out.println("Cliente encontrado: " + resultSet.getString("nombre_completo"));
                 Cliente cliente = new Cliente();
                 cliente.setId(resultSet.getInt("id"));
                 cliente.setNombreCompleto(resultSet.getString("nombre_completo"));

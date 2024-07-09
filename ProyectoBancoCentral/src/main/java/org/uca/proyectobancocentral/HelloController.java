@@ -1,6 +1,8 @@
 package org.uca.proyectobancocentral;
 
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -17,37 +19,41 @@ import org.uca.proyectobancocentral.data_access_object.TarjetaDAO;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.List;
 
 public class HelloController{
     @FXML
     private ComboBox cbReporteD;
     @FXML
-    private TableView tvReporteD;
+    private TableView<Cliente> tvReporteD;
     @FXML
-    private TableColumn colIdReporteD;
+    private TableColumn<Cliente, Integer> colIdReporteD;
     @FXML
-    private TableColumn colNombreReporteD;
+    private TableColumn<Cliente, String> colNombreReporteD;
     @FXML
-    private TableColumn colDireccionReporteD;
+    private TableColumn<Cliente, String> colDireccionReporteD;
     @FXML
-    private TableColumn colTelefonoReporteD;
+    private TableColumn<Cliente, String> colTelefonoReporteD;
     @FXML
-    private TableColumn colCantComprasReporteD;
+    private TableColumn<Cliente, Integer> colCantComprasReporteD;
     @FXML
-    private TableColumn colTotalGastadoReporteD;
+    private TableColumn<Cliente, Double> colTotalGastadoReporteD;
 
     private ClienteDAO clienteDAO = new ClienteDAO();
     private TarjetaDAO tarjetaDAO = new TarjetaDAO();
     private CompraDAO compraDAO = new CompraDAO();
 
+    @FXML
     public void initialize() {
-        colIdReporteD.setCellFactory(new PropertyValueFactory<>("ID"));
-        colNombreReporteD.setCellValueFactory(new PropertyValueFactory<>("Nombre"));
-        colDireccionReporteD.setCellValueFactory(new PropertyValueFactory<>("Direccion"));
-        colTelefonoReporteD.setCellValueFactory(new PropertyValueFactory<>("Telefono"));
-        colCantComprasReporteD.setCellValueFactory(new PropertyValueFactory<>("Cantidad compras"));
-        colTotalGastadoReporteD.setCellValueFactory(new PropertyValueFactory<>("Total gastado"));
+        colIdReporteD.setCellValueFactory(new PropertyValueFactory<>("id"));
+        colNombreReporteD.setCellValueFactory(new PropertyValueFactory<>("nombreCompleto"));
+        colDireccionReporteD.setCellValueFactory(new PropertyValueFactory<>("direccion"));
+        colTelefonoReporteD.setCellValueFactory(new PropertyValueFactory<>("telefono"));
+        colCantComprasReporteD.setCellValueFactory(new PropertyValueFactory<>("cantidadCompras"));
+        colTotalGastadoReporteD.setCellValueFactory(new PropertyValueFactory<>("totalGastado"));
         cbReporteD.getItems().addAll("Visa", "MasterCard", "American Express", "Discover", "Diners Club");
+
+        tvReporteD.getItems().clear();
 
         compraDAO.BorrarTablaCompra();
         tarjetaDAO.BorrarTablaTarjeta();
@@ -323,8 +329,20 @@ public class HelloController{
     @FXML
     private void handleBotonSeleccionar(){
         String facilitador = cbReporteD.getValue().toString();
+        System.out.println(facilitador);
         if(facilitador != null){
-            clienteDAO.comprasPorFacilitadorTarjeta(facilitador);
+            tvReporteD.getItems().clear();
+            try{
+                List<Cliente> clientes = clienteDAO.comprasPorFacilitadorTarjeta(facilitador);
+                System.out.println("Clientes agregados a la tabla: " + clientes.size());
+                clientes.forEach(cliente -> {
+                    System.out.println(cliente.getNombreCompleto());
+                    tvReporteD.getItems().add(cliente);
+                });
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
         }
     }
 }
