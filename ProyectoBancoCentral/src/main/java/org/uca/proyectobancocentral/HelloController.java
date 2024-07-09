@@ -48,7 +48,7 @@ public class HelloController{
         colTotalGastadoReporteD.setCellValueFactory(new PropertyValueFactory<>("Total gastado"));
         cbReporteD.getItems().addAll("Visa", "MasterCard", "American Express", "Discover", "Diners Club");
         mesComboBoxB.getItems().addAll("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto",
-                "Septiembre","Octubre","Noviembre","Diciembre");
+                "Septiembre","Octubre","Noviembre","Diciembre"); // cris
 
 
         clienteDAO.crearTablaCliente();
