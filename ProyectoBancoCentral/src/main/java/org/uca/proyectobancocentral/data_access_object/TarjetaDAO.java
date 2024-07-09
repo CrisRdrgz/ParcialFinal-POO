@@ -48,8 +48,59 @@ public class TarjetaDAO {
         }
     }
 
+    public List<Tarjeta> bucarTarjetasPorId(int clienteId) {
+        List<Tarjeta> tarjetas = new ArrayList<>();
+        String query = "SELECT " +
+                "CONCAT('XXXX XXXX XXXX ', RIGHT(numero, 4)) AS numero_censurado, " +
+                "tipo " +
+                "FROM Tarjeta WHERE id_cliente = ?";
+        try {
+            Connection connection = DatabaseConnection.getInstance().getConnection();
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, clienteId);
+            ResultSet resultSet = statement.executeQuery();
+            boolean tieneTC = false;
+            boolean tieneTD = false;
+
+            while (resultSet.next()) {
+                String numeroCensurado = resultSet.getString("numero_censurado");
+                String tipo = resultSet.getString("tipo");
+                Tarjeta tarjeta = new Tarjeta();
+                tarjeta.setNumeroTarjeta(numeroCensurado);
+                tarjeta.setTipoTarjeta(tipo);
+                tarjetas.add(tarjeta);
+
+                if (tipo.equalsIgnoreCase("Credito")) {
+                    tieneTC = true;
+                } else if (tipo.equalsIgnoreCase("Debito")) {
+                    tieneTD = true;
+                }
+            }
+
+            if (!tieneTC) {
+                Tarjeta noCredito = new Tarjeta();
+                noCredito.setNumeroTarjeta("N/A");
+                noCredito.setTipoTarjeta("credito");
+                tarjetas.add(noCredito);
+            }
+
+            if (!tieneTD) {
+                Tarjeta noDebito = new Tarjeta();
+                noDebito.setNumeroTarjeta("N/A");
+                noDebito.setTipoTarjeta("Debito");
+                tarjetas.add(noDebito);
+            }
+            resultSet.close();
+            statement.close();
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return tarjetas;
+    }
+
     public void BorrarTablaTarjeta(){
-        String query = "drop table Tarjeta";
+        String query = "drop table if exists Tarjeta";
         try{
             Connection connection = DatabaseConnection.getInstance().getConnection();
             Statement statement = connection.createStatement();

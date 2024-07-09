@@ -43,7 +43,7 @@ public class ClienteDAO {
     }
     public List<Cliente> comprasPorFacilitadorTarjeta(String facilitador){
         List<Cliente> clientes = new ArrayList<Cliente>();
-        String query = "select c.*, count(co.id) as cantidad_compras, sum(co.monto) as total_gastado" +
+        String query = "select c.*, count(co.id) as cantidad_compras, sum(co.total) as total_gastado" +
                 " from Cliente c inner join Tarjeta t on t.id_cliente = c.id " +
                 "inner join Compra co on co.id_tarjeta = t.id where facilitador = ?" +
                 " group by c.id, c.nombre_completo, c.direccion, c.telefono";
@@ -53,6 +53,7 @@ public class ClienteDAO {
             statement.setString(1, facilitador);
             ResultSet resultSet = statement.executeQuery();
             while(resultSet.next()){
+                System.out.println("Cliente encontrado: " + resultSet.getString("nombre_completo"));
                 Cliente cliente = new Cliente();
                 cliente.setId(resultSet.getInt("id"));
                 cliente.setNombreCompleto(resultSet.getString("nombre_completo"));
@@ -72,7 +73,7 @@ public class ClienteDAO {
     }
 
     public void BorrarTablaCliente(){
-        String query = "drop table Cliente";
+        String query = "drop table if exists Cliente";
         try{
             Connection connection = DatabaseConnection.getInstance().getConnection();
             Statement statement = connection.createStatement();

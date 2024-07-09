@@ -5,5 +5,6 @@ module org.uca.proyectobancocentral {
 
 
     opens org.uca.proyectobancocentral to javafx.fxml;
+    opens org.uca.proyectobancocentral.Clases to javafx.base;
     exports org.uca.proyectobancocentral;
 }
