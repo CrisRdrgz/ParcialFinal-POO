@@ -1,39 +1,131 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<VBox alignment="CENTER" prefHeight="600.0" prefWidth="800.0" spacing="20.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.2-ea" fx:controller="org.uca.proyectobancocentral.HelloController">
+<VBox alignment="CENTER" prefHeight="600.0" prefWidth="800.0" spacing="20.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.uca.proyectobancocentral.HelloController">
   <TabPane prefHeight="600.0" prefWidth="800.0">
-      <Tab text="Reporte A" closable="false">
+      <Tab closable="false" text="Reporte A">
           <VBox alignment="CENTER" spacing="10.0">
 
           </VBox>
       </Tab>
-    <Tab text="Reporte B" closable="false">
+    <Tab closable="false" text="Reporte B">
+      <VBox alignment="CENTER" spacing="10.0" style="-fx-background-color: #E9DBD7;">
+            <children>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Reporte B" wrappingWidth="86.13678169250488">
+                  <VBox.margin>
+                     <Insets bottom="30.0" />
+                  </VBox.margin>
+                  <font>
+                     <Font name="System Bold" size="18.0" />
+                  </font>
+               </Text>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Introduzca el ID del cliente">
+                  <VBox.margin>
+                     <Insets bottom="20.0" />
+                  </VBox.margin>
+                  <font>
+                     <Font size="16.0" />
+                  </font>
+               </Text>
+               <TextField fx:id="idTextFieldB" promptText="00">
+                  <VBox.margin>
+                     <Insets left="345.0" right="345.0" />
+                  </VBox.margin>
+               </TextField>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Seleccione el mes y año">
+                  <VBox.margin>
+                     <Insets top="20.0" />
+                  </VBox.margin>
+                  <font>
+                     <Font size="16.0" />
+                  </font>
+               </Text>
+               <HBox prefHeight="80.0" prefWidth="200.0">
+                  <children>
+                     <VBox prefHeight="96.0" prefWidth="400.0">
+                        <children>
+                           <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Mes">
+                              <VBox.margin>
+                                 <Insets left="190.0" />
+                              </VBox.margin>
+                              <font>
+                                 <Font size="14.0" />
+                              </font>
+                           </Text>
+                           <ComboBox fx:id="mesComboBoxB" prefWidth="150.0">
+                              <VBox.margin>
+                                 <Insets left="130.0" top="5.0" />
+                              </VBox.margin>
+                           </ComboBox>
+                        </children>
+                     </VBox>
+                     <VBox prefHeight="200.0" prefWidth="400.0">
+                        <children>
+                           <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Año">
+                              <VBox.margin>
+                                 <Insets left="190.0" />
+                              </VBox.margin>
+                              <font>
+                                 <Font size="14.0" />
+                              </font>
+                           </Text>
+                           <TextField fx:id="anioTextFieldB">
+                              <VBox.margin>
+                                 <Insets left="150.0" right="150.0" top="5.0" />
+                              </VBox.margin>
+                           </TextField>
+                        </children>
+                     </VBox>
+                  </children>
+               </HBox>
+               <Button fx:id="buscarButtonB" mnemonicParsing="false" text="Buscar" />
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Total dinero gastado en el mes">
+                  <VBox.margin>
+                     <Insets top="20.0" />
+                  </VBox.margin>
+                  <font>
+                     <Font size="16.0" />
+                  </font>
+               </Text>
+               <Label fx:id="totalLabelB" text="Label">
+                  <VBox.margin>
+                     <Insets top="10.0" />
+                  </VBox.margin>
+               </Label>
+            </children></VBox>
+    </Tab>
+    <Tab closable="false" text="Reporte C">
       <VBox alignment="CENTER" spacing="10.0">
       </VBox>
     </Tab>
-    <Tab text="Reporte C" closable="false">
+    <Tab closable="false" text="Reporte D">
       <VBox alignment="CENTER" spacing="10.0">
-      </VBox>
-    </Tab>
-    <Tab text="Reporte D" closable="false">
-      <VBox alignment="CENTER" spacing="10.0">
-          <Label text="Reporte D"/>
-          <Label text="Clientes por facilitador"/>
-          <ComboBox fx:id="cbReporteD" prefWidth="200.0"/>
-          <Button text="Seleccionar" onAction="#handleBotonSeleccionar"/>
+          <Label text="Reporte D" />
+          <Label text="Clientes por facilitador" />
+          <ComboBox fx:id="cbReporteD" prefWidth="200.0" />
+          <Button onAction="#handleBotonSeleccionar" text="Seleccionar" />
           <TableView fx:id="tvReporteD" prefHeight="300.0" prefWidth="600.0">
-              <TableColumn fx:id="colIdReporteD" text="ID" prefWidth="75.0"/>
-              <TableColumn fx:id="colNombreReporteD" text="Nombre" prefWidth="125.0"/>
-              <TableColumn fx:id="colDireccionReporteD" text="Direccion" prefWidth="150.0"/>
-              <TableColumn fx:id="colTelefonoReporteD" text="Telefono" prefWidth="100.0"/>
-              <TableColumn fx:id="colCantComprasReporteD" text="Cantidad compras" prefWidth="75.0"/>
-              <TableColumn fx:id="colTotalGastadoReporteD" text="Total gastado" prefWidth="75.0"/>
+              <TableColumn fx:id="colIdReporteD" prefWidth="75.0" text="ID" />
+              <TableColumn fx:id="colNombreReporteD" prefWidth="125.0" text="Nombre" />
+              <TableColumn fx:id="colDireccionReporteD" prefWidth="150.0" text="Direccion" />
+              <TableColumn fx:id="colTelefonoReporteD" prefWidth="100.0" text="Telefono" />
+              <TableColumn fx:id="colCantComprasReporteD" prefWidth="75.0" text="Cantidad compras" />
+              <TableColumn fx:id="colTotalGastadoReporteD" prefWidth="75.0" text="Total gastado" />
           </TableView>
-          <Button text="Guardar archivo"/>
+          <Button text="Guardar archivo" />
       </VBox>
     </Tab>
       <VBox.margin>

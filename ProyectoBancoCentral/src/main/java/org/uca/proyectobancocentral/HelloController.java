@@ -20,6 +20,8 @@ public class HelloController{
     @FXML
     private ComboBox cbReporteD;
     @FXML
+    private ComboBox mesComboBoxB;
+    @FXML
     private TableView tvReporteD;
     @FXML
     private TableColumn colIdReporteD;
@@ -45,6 +47,9 @@ public class HelloController{
         colCantComprasReporteD.setCellValueFactory(new PropertyValueFactory<>("Cantidad compras"));
         colTotalGastadoReporteD.setCellValueFactory(new PropertyValueFactory<>("Total gastado"));
         cbReporteD.getItems().addAll("Visa", "MasterCard", "American Express", "Discover", "Diners Club");
+        mesComboBoxB.getItems().addAll("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto",
+                "Septiembre","Octubre","Noviembre","Diciembre");
+
 
         clienteDAO.crearTablaCliente();
         tarjetaDAO.crearTablaTarjeta();
