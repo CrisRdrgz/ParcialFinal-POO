@@ -35,7 +35,9 @@ javafx {
 }
 
 dependencies {
-
+  implementation 'org.openjfx:javafx-controls:17'
+  implementation 'org.openjfx:javafx-fxml:17'
+  implementation 'com.microsoft.sqlserver:mssql-jdbc:12.6.3.jre11'
   testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
   testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
 }

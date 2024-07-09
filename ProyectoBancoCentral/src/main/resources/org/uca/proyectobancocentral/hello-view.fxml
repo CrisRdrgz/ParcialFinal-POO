@@ -21,6 +21,19 @@
     </Tab>
     <Tab text="Reporte D" closable="false">
       <VBox alignment="CENTER" spacing="10.0">
+          <Label text="Reporte D"/>
+          <Label text="Clientes por facilitador"/>
+          <ComboBox fx:id="cbReporteD" prefWidth="200.0"/>
+          <Button text="Seleccionar" onAction="#handleBotonSeleccionar"/>
+          <TableView fx:id="tvReporteD" prefHeight="300.0" prefWidth="600.0">
+              <TableColumn fx:id="colIdReporteD" text="ID" prefWidth="75.0"/>
+              <TableColumn fx:id="colNombreReporteD" text="Nombre" prefWidth="125.0"/>
+              <TableColumn fx:id="colDireccionReporteD" text="Direccion" prefWidth="150.0"/>
+              <TableColumn fx:id="colTelefonoReporteD" text="Telefono" prefWidth="100.0"/>
+              <TableColumn fx:id="colCantComprasReporteD" text="Cantidad compras" prefWidth="75.0"/>
+              <TableColumn fx:id="colTotalGastadoReporteD" text="Total gastado" prefWidth="75.0"/>
+          </TableView>
+          <Button text="Guardar archivo"/>
       </VBox>
     </Tab>
       <VBox.margin>

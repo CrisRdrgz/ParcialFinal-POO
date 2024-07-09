@@ -27,7 +27,7 @@ public class ClienteDAO {
     }
 
     public void registrarCliente(Cliente cliente){
-        String query = "insert into Clientes (nombre_completo, direccion, telefono) values (?,?,?)";
+        String query = "insert into Cliente (nombre_completo, direccion, telefono) values (?,?,?)";
         try{
             Connection connection = DatabaseConnection.getInstance().getConnection();
             PreparedStatement statement = connection.prepareStatement(query);
@@ -44,8 +44,8 @@ public class ClienteDAO {
     public List<Cliente> comprasPorFacilitadorTarjeta(String facilitador){
         List<Cliente> clientes = new ArrayList<Cliente>();
         String query = "select c.*, count(co.id) as cantidad_compras, sum(co.monto) as total_gastado" +
-                " from cliente c inner join tarjeta t on t.id_cliente = c.id " +
-                "inner join compra co on co.id_tarjeta = t.id where facilitador = ?" +
+                " from Cliente c inner join Tarjeta t on t.id_cliente = c.id " +
+                "inner join Compra co on co.id_tarjeta = t.id where facilitador = ?" +
                 " group by c.id, c.nombre_completo, c.direccion, c.telefono";
         try{
             Connection connection = DatabaseConnection.getInstance().getConnection();
