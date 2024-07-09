@@ -1,16 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<?import javafx.scene.control.Button?>
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="org.uca.proyectobancocentral.HelloController">
-  <padding>
-    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-  </padding>
+<VBox alignment="CENTER" prefHeight="600.0" prefWidth="800.0" spacing="20.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.2-ea" fx:controller="org.uca.proyectobancocentral.HelloController">
+  <TabPane prefHeight="600.0" prefWidth="800.0">
+      <Tab text="Reporte A" closable="false">
+          <VBox alignment="CENTER" spacing="10.0">
 
-  <Label fx:id="welcomeText"/>
-  <Button text="Hello!" onAction="#onHelloButtonClick"/>
+          </VBox>
+      </Tab>
+    <Tab text="Reporte B" closable="false">
+      <VBox alignment="CENTER" spacing="10.0">
+      </VBox>
+    </Tab>
+    <Tab text="Reporte C" closable="false">
+      <VBox alignment="CENTER" spacing="10.0">
+      </VBox>
+    </Tab>
+    <Tab text="Reporte D" closable="false">
+      <VBox alignment="CENTER" spacing="10.0">
+          <Label text="Reporte D"/>
+          <Label text="Clientes por facilitador"/>
+          <ComboBox fx:id="cbReporteD" prefWidth="200.0"/>
+          <Button text="Seleccionar" onAction="#handleBotonSeleccionar"/>
+          <TableView fx:id="tvReporteD" prefHeight="300.0" prefWidth="600.0">
+              <TableColumn fx:id="colIdReporteD" text="ID" prefWidth="75.0"/>
+              <TableColumn fx:id="colNombreReporteD" text="Nombre" prefWidth="125.0"/>
+              <TableColumn fx:id="colDireccionReporteD" text="Direccion" prefWidth="150.0"/>
+              <TableColumn fx:id="colTelefonoReporteD" text="Telefono" prefWidth="100.0"/>
+              <TableColumn fx:id="colCantComprasReporteD" text="Cantidad compras" prefWidth="75.0"/>
+              <TableColumn fx:id="colTotalGastadoReporteD" text="Total gastado" prefWidth="75.0"/>
+          </TableView>
+          <Button text="Guardar archivo"/>
+      </VBox>
+    </Tab>
+      <VBox.margin>
+         <Insets />
+      </VBox.margin>
+  </TabPane>
 </VBox>

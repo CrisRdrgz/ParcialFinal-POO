@@ -5,12 +5,18 @@ public class Cliente {
     private String nombreCompleto; // Nombre completo del cliente
     private String direccion; // Direccion del cliente
     private String telefono; // Número de telefono del cliente
+    private int cantidadCompras;
+    private double totalGastado;
 
     public Cliente(int id, String nombreCompleto, String direccion, String telefono) {
         this.id = id; // Pone el ID
         this.nombreCompleto = nombreCompleto; // Pone el nombre completo
         this.direccion = direccion; // Pone la direccion
         this.telefono = telefono; // Pone el telefono
+    }
+
+    public Cliente() {
+
     }
 
     public int getId() {
@@ -45,6 +51,20 @@ public class Cliente {
         this.telefono = telefono; // Pone el telefono del cliente
     }
 
+    public int getCantidadCompras() {
+        return cantidadCompras;
+    }
 
+    public void setCantidadCompras(int cantidadCompras) {
+        this.cantidadCompras = cantidadCompras;
+    }
+
+    public double getTotalGastado() {
+        return totalGastado;
+    }
+
+    public void setTotalGastado(double totalGastado) {
+        this.totalGastado = totalGastado;
+    }
 }
 
