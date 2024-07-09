@@ -4,10 +4,7 @@ import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import org.uca.proyectobancocentral.Clases.Cliente;
@@ -43,6 +40,14 @@ public class HelloController{
     private TableColumn<Cliente, Integer> colCantComprasReporteD;
     @FXML
     private TableColumn<Cliente, Double> colTotalGastadoReporteD;
+    @FXML
+    private TableView<Tarjeta> tvTarjetas;
+    @FXML
+    private TableColumn<Tarjeta, String> colNumeroTarjeta;
+    @FXML
+    private TableColumn<Tarjeta, String> colTipoTarjeta;
+    @FXML
+    private TextField tfClienteId;
 
     private ClienteDAO clienteDAO = new ClienteDAO();
     private TarjetaDAO tarjetaDAO = new TarjetaDAO();
@@ -57,6 +62,8 @@ public class HelloController{
         colCantComprasReporteD.setCellValueFactory(new PropertyValueFactory<>("cantidadCompras"));
         colTotalGastadoReporteD.setCellValueFactory(new PropertyValueFactory<>("totalGastado"));
         cbReporteD.getItems().addAll("Visa", "MasterCard", "American Express", "Discover", "Diners Club");
+        colNumeroTarjeta.setCellValueFactory(new PropertyValueFactory<>("numeroTarjeta"));
+        colTipoTarjeta.setCellValueFactory(new PropertyValueFactory<>("tipoTarjeta"));
 
         tvReporteD.getItems().clear();
 
@@ -639,5 +646,13 @@ public class HelloController{
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @FXML
+    private void mostrarTarjetasPorId() {
+        int clienteId = Integer.parseInt(tfClienteId.getText());
+        List<Tarjeta> tarjetas = tarjetaDAO.bucarTarjetasPorId(clienteId);
+        System.out.println(tarjetas);
+        tvTarjetas.getItems().setAll(tarjetas);
     }
 }

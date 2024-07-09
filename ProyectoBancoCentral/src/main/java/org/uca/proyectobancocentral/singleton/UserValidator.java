@@ -7,8 +7,8 @@ public class UserValidator {
         String username = System.getProperty("user.name");
         if("dalet".equals(username)) {
             this.servername = "LAPTOP-SJ7S2DJL";
-        } else if ("".equals(username)) {
-            this.servername = "";
+        } else if ("abra3".equals(username)) {
+            this.servername = "GERMAN";
         } else if ("".equals(username)) {
             this.servername = "";
         } else if("".equals(username)){
