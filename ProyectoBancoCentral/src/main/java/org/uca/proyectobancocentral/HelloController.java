@@ -17,8 +17,13 @@ import org.uca.proyectobancocentral.data_access_object.ClienteDAO;
 import org.uca.proyectobancocentral.data_access_object.CompraDAO;
 import org.uca.proyectobancocentral.data_access_object.TarjetaDAO;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class HelloController{
@@ -595,7 +600,7 @@ public class HelloController{
     }
 
     @FXML
-    private void handleBotonSeleccionar(){
+    private void handleBotonSeleccionarReporteD(){
         String facilitador = cbReporteD.getValue().toString();
         System.out.println(facilitador);
         if(facilitador != null){
@@ -611,6 +616,28 @@ public class HelloController{
                 e.printStackTrace();
             }
 
+        }
+    }
+
+    @FXML
+    private void handleBotonGuardarArchivoReporteD(){
+        ObservableList<Cliente> clientes = tvReporteD.getItems();
+        if(clientes.isEmpty()){
+            return;
+        }
+        String ahora = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd_HH-mm-ss"));
+        System.out.println(ahora);
+        System.out.println(System.getProperty("user.dir"));
+        String path = System.getProperty("user.dir") + "/ProyectoBancoCentral/src/main/resources/org/uca/proyectobancocentral/Reportes/ReporteD " + cbReporteD.getValue().toString() + " " + ahora + ".txt";
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(path))) {
+            for (Cliente cliente : clientes) {
+                String line = String.format("ID: %d, Nombre: %s, Dirección: %s, Teléfono: %s, Cantidad Compras: %d, Total Gastado: $%.2f", cliente.getId(), cliente.getNombreCompleto(), cliente.getDireccion(), cliente.getTelefono(), cliente.getCantidadCompras(), cliente.getTotalGastado());
+                writer.write(line);
+                writer.newLine();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }

@@ -1,0 +1,3 @@
+ID: 5, Nombre: Jose Ricardo Fuentes Martinez, Dirección: Calle San Antonio 101, La Libertad, Teléfono: 70215001, Cantidad Compras: 1, Total Gastado: $491.90
+ID: 9, Nombre: Carlos Roberto Perez Lopez, Dirección: Calle Libertad 789, San Salvador, Teléfono: 70345678, Cantidad Compras: 5, Total Gastado: $1211.22
+ID: 12, Nombre: Luis Alfredo Ramirez Castro, Dirección: Calle Cuscatlan 789, Santa Ana, Teléfono: 70678901, Cantidad Compras: 1, Total Gastado: $567.80
