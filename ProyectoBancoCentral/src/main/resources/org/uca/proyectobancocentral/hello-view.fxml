@@ -24,16 +24,18 @@
           <Label text="Reporte D"/>
           <Label text="Clientes por facilitador"/>
           <ComboBox fx:id="cbReporteD" prefWidth="200.0"/>
-          <Button text="Seleccionar" onAction="#handleBotonSeleccionar"/>
+          <Button text="Seleccionar" onAction="#handleBotonSeleccionarReporteD"/>
           <TableView fx:id="tvReporteD" prefHeight="300.0" prefWidth="600.0">
-              <TableColumn fx:id="colIdReporteD" text="ID" prefWidth="75.0"/>
-              <TableColumn fx:id="colNombreReporteD" text="Nombre" prefWidth="125.0"/>
-              <TableColumn fx:id="colDireccionReporteD" text="Direccion" prefWidth="150.0"/>
-              <TableColumn fx:id="colTelefonoReporteD" text="Telefono" prefWidth="100.0"/>
-              <TableColumn fx:id="colCantComprasReporteD" text="Cantidad compras" prefWidth="75.0"/>
-              <TableColumn fx:id="colTotalGastadoReporteD" text="Total gastado" prefWidth="75.0"/>
+              <columns>
+                  <TableColumn fx:id="colIdReporteD" text="ID" prefWidth="40.0"/>
+                  <TableColumn fx:id="colNombreReporteD" text="Nombre" prefWidth="200.0"/>
+                  <TableColumn fx:id="colDireccionReporteD" text="Direccion" prefWidth="225.0"/>
+                  <TableColumn fx:id="colTelefonoReporteD" text="Telefono" prefWidth="90.0"/>
+                  <TableColumn fx:id="colCantComprasReporteD" text="Cantidad compras" prefWidth="125.0"/>
+                  <TableColumn fx:id="colTotalGastadoReporteD" text="Total gastado ($)" prefWidth="120.0"/>
+              </columns>
           </TableView>
-          <Button text="Guardar archivo"/>
+          <Button text="Guardar archivo" onAction="#handleBotonGuardarArchivoReporteD"/>
       </VBox>
     </Tab>
       <VBox.margin>

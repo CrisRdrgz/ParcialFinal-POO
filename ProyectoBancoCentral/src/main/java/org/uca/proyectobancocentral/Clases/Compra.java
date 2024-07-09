@@ -1,18 +1,24 @@
 package org.uca.proyectobancocentral.Clases; //Paquete donde se encuentra
 
+import java.time.LocalDate;
+
 public class Compra {
     private int id; // ID de la compra
-    private String fechaCompra; // Fecha de la compra
+    private LocalDate fechaCompra; // Fecha de la compra
     private double montoTotal; // total de la compra
     private String descripcion; // Descripcion de la compra
     private int tarjetaId; // ID de la tarjeta
 
-    public Compra(int id, String fechaCompra, double montoTotal, String descripcion, int tarjetaId) {
+    public Compra(int id, LocalDate fechaCompra, double montoTotal, String descripcion, int tarjetaId) {
         this.id = id; // Pone el identificador
         this.fechaCompra = fechaCompra; // Pone la fecha de la compra
         this.montoTotal = montoTotal; // Pone el monto total de la compra
         this.descripcion = descripcion; // Pone la descripcion de la compra
         this.tarjetaId = tarjetaId; // Pone el identificador de la tarjeta utilizada
+    }
+
+    public Compra() {
+
     }
 
     public int getId() {
@@ -23,11 +29,11 @@ public class Compra {
         this.id = id; // Pone el ID de la compra
     }
 
-    public String getFechaCompra() {
+    public LocalDate getFechaCompra() {
         return fechaCompra; // Devuelve la fecha de la compra
     }
 
-    public void setFechaCompra(String fechaCompra) {
+    public void setFechaCompra(LocalDate fechaCompra) {
         this.fechaCompra = fechaCompra; // Pone la fecha de la compra
     }
 

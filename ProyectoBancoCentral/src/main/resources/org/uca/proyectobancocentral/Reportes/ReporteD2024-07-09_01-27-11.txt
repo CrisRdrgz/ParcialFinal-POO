@@ -1,0 +1,5 @@
+ID: 3, Nombre: Carlos Alberto Ruiz Garcia, Dirección: Calle Arce 456, Santa Ana, Teléfono: 75310970, Cantidad Compras: 4, Total Gastado: $1909.34
+ID: 4, Nombre: Ana Patricia Sanchez Diaz, Dirección: Avenida Masferrer 789, San Salvador, Teléfono: 78431000, Cantidad Compras: 3, Total Gastado: $561.80
+ID: 8, Nombre: Jose Luis Martinez Reyes, Dirección: Calle Principal 456, Santa Ana, Teléfono: 70123456, Cantidad Compras: 1, Total Gastado: $240.00
+ID: 10, Nombre: Ana Maria Lopez Garcia, Dirección: Calle Independencia 123, Santa Tecla, Teléfono: 70456789, Cantidad Compras: 3, Total Gastado: $364.19
+ID: 15, Nombre: Maria Fernanda Gonzalez Mejia, Dirección: Calle Arce 789, Santa Tecla, Teléfono: 70901234, Cantidad Compras: 2, Total Gastado: $253.95

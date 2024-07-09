@@ -1,0 +1,3 @@
+ID: 2, Nombre: Maria Teresa Gomez Hernandez, Dirección: Avenida Roosevelt 123, San Miguel, Teléfono: 78752310, Cantidad Compras: 1, Total Gastado: $800.00
+ID: 12, Nombre: Luis Alfredo Ramirez Castro, Dirección: Calle Cuscatlan 789, Santa Ana, Teléfono: 70678901, Cantidad Compras: 2, Total Gastado: $384.90
+ID: 15, Nombre: Maria Fernanda Gonzalez Mejia, Dirección: Calle Arce 789, Santa Tecla, Teléfono: 70901234, Cantidad Compras: 2, Total Gastado: $774.81
