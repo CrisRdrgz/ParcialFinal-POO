@@ -71,4 +71,16 @@ public class Tarjeta {
     public void setClienteId(int clienteId) {
         this.clienteId = clienteId; // Pone el ID del cliente
     }
+
+    @Override
+    public String toString() {
+        return "Tarjeta{" +
+                "id=" + id +
+                ", numeroTarjeta='" + numeroTarjeta + '\'' +
+                ", fechaExpiracion=" + fechaExpiracion +
+                ", tipoTarjeta='" + tipoTarjeta + '\'' +
+                ", facilitador='" + facilitador + '\'' +
+                ", clienteId=" + clienteId +
+                '}';
+    }
 }
