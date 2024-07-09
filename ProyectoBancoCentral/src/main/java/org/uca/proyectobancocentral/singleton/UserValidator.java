@@ -9,8 +9,8 @@ public class UserValidator {
         if("dalet".equals(username)) {
             this.servername = "LAPTOP-SJ7S2DJL";
             this.userPath = "C:/Users/dalet/Documents/ParcialFinal-POO/ProyectoBancoCentral/src/main/resources/org/uca/proyectobancocentral/Reportes/";
-        } else if ("".equals(username)) {
-            this.servername = "";
+        } else if ("abra3".equals(username)) {
+            this.servername = "GERMAN";
             this.userPath = "";
         } else if ("".equals(username)) {
             this.servername = "";

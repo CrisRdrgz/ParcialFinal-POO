@@ -17,6 +17,16 @@
     </Tab>
     <Tab text="Reporte C" closable="false">
       <VBox alignment="CENTER" spacing="10.0">
+          <Label text="Tarjetas asociadas a un cliente" />
+          <Label text="ID Cliente" />
+          <TextField fx:id="tfClienteId" prefHeight="26.0" prefWidth="778.0" promptText="Ingrese ID del cliente" />
+          <Button text="Buscar" onAction="#mostrarTarjetasPorId" />
+          <TableView fx:id="tvTarjetas" prefHeight="300.0" prefWidth="600.0">
+              <columns>
+                  <TableColumn fx:id="colNumeroTarjeta" prefWidth="300.0" text="Numero de Tarjeta" />
+                  <TableColumn fx:id="colTipoTarjeta" prefWidth="300.0" text="Tipo de Tarjeta" />
+              </columns>
+          </TableView>
       </VBox>
     </Tab>
     <Tab text="Reporte D" closable="false">
