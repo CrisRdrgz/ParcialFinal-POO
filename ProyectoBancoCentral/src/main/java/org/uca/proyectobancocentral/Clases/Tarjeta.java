@@ -8,9 +8,10 @@ public class Tarjeta {
     private LocalDate fechaExpiracion; // Fecha de expiracion de la tarjeta
     private String tipoTarjeta; // Tipo de tarjeta (Credito o Debito)
     private String facilitador; // Facilitador de la tarjeta (visa, mastercard)
-    private int clienteId; // Identificador del cliente asociado
+    private int clienteId; // Identificador del cliente asociado 
 
     public Tarjeta(int id, String numeroTarjeta, LocalDate fechaExpiracion, String tipoTarjeta, String facilitador, int clienteId) {
+    
         this.id = id; // Asigna el identificador
         this.numeroTarjeta = numeroTarjeta; // Asigna el numero de la tarjeta
         this.fechaExpiracion = fechaExpiracion; // Asigna la fecha de expiracion
