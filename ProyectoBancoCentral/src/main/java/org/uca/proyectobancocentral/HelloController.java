@@ -13,6 +13,7 @@ import org.uca.proyectobancocentral.Clases.Tarjeta;
 import org.uca.proyectobancocentral.data_access_object.ClienteDAO;
 import org.uca.proyectobancocentral.data_access_object.CompraDAO;
 import org.uca.proyectobancocentral.data_access_object.TarjetaDAO;
+import org.uca.proyectobancocentral.singleton.UserValidator;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -635,7 +636,7 @@ public class HelloController{
         String ahora = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd_HH-mm-ss"));
         System.out.println(ahora);
         System.out.println(System.getProperty("user.dir"));
-        String path = System.getProperty("user.dir") + "/ProyectoBancoCentral/src/main/resources/org/uca/proyectobancocentral/Reportes/ReporteD " + cbReporteD.getValue().toString() + " " + ahora + ".txt";
+        String path = UserValidator.getInstance().getUserPath() + "ReporteD " + cbReporteD.getValue().toString() + " " + ahora + ".txt";
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(path))) {
             for (Cliente cliente : clientes) {
