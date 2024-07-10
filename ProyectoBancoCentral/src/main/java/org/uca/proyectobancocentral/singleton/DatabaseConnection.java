@@ -12,7 +12,7 @@ public class DatabaseConnection {
     private DatabaseConnection() throws SQLException {
         UserValidator userValidator = UserValidator.getInstance();
         String serverName = userValidator.getServername();
-        this.url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=BancoCentral;user=bancoadmin;password=12345;integratedSecurity=false;encrypt=false;";
+        this.url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=BancoCentral;user=bandoadmin;password=12345;integratedSecurity=false;encrypt=false;";
         this.connection = DriverManager.getConnection(url);
     }
 

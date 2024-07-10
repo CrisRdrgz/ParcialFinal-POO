@@ -52,9 +52,15 @@ public class HelloController{
     @FXML
     private TableView<Compra> tvComprasReporteA;
     @FXML
-    private TableColumn<Compra, String> colIDReporteA;
+    private TableColumn<Compra, Integer> colIDReporteA;
     @FXML
-    private TableColumn<Compra, String> colClienteCompraReporteA;
+    private TableColumn<Compra, LocalDate> colFechaReporteA;
+    @FXML
+    private TableColumn<Compra, String> colDescripcionReporteA;
+    @FXML
+    private TableColumn<Compra, Double> colTotalReporteA;
+    @FXML
+    private TableColumn<Compra, Integer> colIDTarjetaReporteA;
     @FXML
     private Button btnBuscarReporteA;
     @FXML
@@ -62,7 +68,7 @@ public class HelloController{
     @FXML
     private TextField txIDReporteA;
     @FXML
-    private DatePicker dtFechaInicioReporteA;
+    private DatePicker dtFechaReporteA;
     @FXML
     private DatePicker dtFechaFinalReporteA;
 
@@ -83,8 +89,12 @@ public class HelloController{
         cbReporteD.getItems().addAll("Visa", "MasterCard", "American Express", "Discover", "Diners Club");
         colNumeroTarjeta.setCellValueFactory(new PropertyValueFactory<>("numeroTarjeta"));
         colTipoTarjeta.setCellValueFactory(new PropertyValueFactory<>("tipoTarjeta"));
-        colIDReporteA.setCellValueFactory(new PropertyValueFactory<>("ID"));
-        colClienteCompraReporteA.setCellValueFactory(new PropertyValueFactory<>("listaCompraCliente"));
+        //Reporte A
+        colIDReporteA.setCellValueFactory(new PropertyValueFactory<>("id"));
+        colFechaReporteA.setCellValueFactory(new PropertyValueFactory<>("fechaCompra"));
+        colTotalReporteA.setCellValueFactory(new PropertyValueFactory<>("montoTotal"));
+        colDescripcionReporteA.setCellValueFactory(new PropertyValueFactory<>("descripcion"));
+        colIDTarjetaReporteA.setCellValueFactory(new PropertyValueFactory<>("tarjetaId"));
 
         tvReporteD.getItems().clear();
 
@@ -680,10 +690,32 @@ public class HelloController{
     @FXML
     private void mostrarComprasPorID() {
         int clienteId = Integer.parseInt(txIDReporteA.getText());
-        LocalDate inicio = dtFechaInicioReporteA.getConverter().fromString(dtFechaInicioReporteA.getEditor().getText());
+        LocalDate inicio = dtFechaReporteA.getConverter().fromString(dtFechaReporteA.getEditor().getText());
         LocalDate fin = dtFechaFinalReporteA.getConverter().fromString(dtFechaFinalReporteA.getEditor().getText());
         List<Compra> compras = compraDAO.mostrarIDPorCompra(clienteId, inicio, fin);
         System.out.println(compras);
         tvComprasReporteA.getItems().setAll(compras);
+    }
+
+    @FXML
+    private void handleBotonGuardarArchivoReporteA(){
+        ObservableList<Compra> compras = tvComprasReporteA.getItems();
+        if(compras.isEmpty()){
+            return;
+        }
+        String ahora = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd_HH-mm-ss"));
+        System.out.println(ahora);
+        System.out.println(System.getProperty("user.dir"));
+        String path = UserValidator.getInstance().getUserPath() + "ReporteA " + ahora + ".txt";
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(path))) {
+            for (Compra compra : compras) {
+                String line = String.format("ID: %d, Fecha: %s, Total: %f, Descripcion: %s, ID Tarjeta: %d", compra.getId(), compra.getFechaCompra().toString(), compra.getMontoTotal(), compra.getDescripcion(), compra.getTarjetaId());
+                writer.write(line);
+                writer.newLine();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
