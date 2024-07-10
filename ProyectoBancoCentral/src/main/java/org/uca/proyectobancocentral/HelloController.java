@@ -28,6 +28,14 @@ public class HelloController{
     @FXML
     private ComboBox cbReporteD;
     @FXML
+    private ComboBox<String>  mesComboBoxB; // 00082923 declaramos el Combo Box de mes
+    @FXML
+    private ComboBox<String>  anioComboBoxB; // 00082923 declaramos el Combo Box de año
+    @FXML
+    private TextField idTextFieldB; // 00082923 declaramos el Text field donde va el ID
+    @FXML
+    private Label totalLabelB; // 00082923 declaramos el Label donde se pondra el total
+    @FXML
     private TableView<Cliente> tvReporteD;
     @FXML
     private TableColumn<Cliente, Integer> colIdReporteD;
@@ -42,13 +50,14 @@ public class HelloController{
     @FXML
     private TableColumn<Cliente, Double> colTotalGastadoReporteD;
     @FXML
-    private TableView<Tarjeta> tvTarjetas;
+    private TableView<Tarjeta> tvTarjetas;//00011223 declaro un table view que mostrara la lista de Tarjetas en la interfaz grafica
     @FXML
-    private TableColumn<Tarjeta, String> colNumeroTarjeta;
+    private TableColumn<Tarjeta, String> colNumeroTarjeta;//00011223 declaro una columna de la tbla view que mostrar el numero de la tarjeta en la interfaza grafica
     @FXML
-    private TableColumn<Tarjeta, String> colTipoTarjeta;
+    private TableColumn<Tarjeta, String> colTipoTarjeta;//00011223 declaro una columna de la table viwe que mostrara de que tipo es la tarjeta
     @FXML
-    private TextField tfClienteId;
+
+    private TextField tfClienteId;//0011223 declaro un textfield donde se ingresara el id del cliente para ver sus tarjetas
     @FXML
     private TableView<Compra> tvComprasReporteA; //00125123 declarando tabla de la vista
     @FXML
@@ -81,6 +90,7 @@ public class HelloController{
         colCantComprasReporteD.setCellValueFactory(new PropertyValueFactory<>("cantidadCompras"));
         colTotalGastadoReporteD.setCellValueFactory(new PropertyValueFactory<>("totalGastado"));
         cbReporteD.getItems().addAll("Visa", "MasterCard", "American Express", "Discover", "Diners Club");
+
         colNumeroTarjeta.setCellValueFactory(new PropertyValueFactory<>("numeroTarjeta"));
         colTipoTarjeta.setCellValueFactory(new PropertyValueFactory<>("tipoTarjeta"));
         //Reporte A
@@ -89,13 +99,20 @@ public class HelloController{
         colTotalReporteA.setCellValueFactory(new PropertyValueFactory<>("montoTotal"));
         colDescripcionReporteA.setCellValueFactory(new PropertyValueFactory<>("descripcion"));
         colIDTarjetaReporteA.setCellValueFactory(new PropertyValueFactory<>("tarjetaId"));
+      
+        mesComboBoxB.getItems().addAll("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto",
+                "Septiembre", "Octubre", "Noviembre", "Diciembre"); // 00082923 le ponemos las opciones de meses
+        anioComboBoxB.getItems().addAll("2023", "2024"); // 00082923 le ponemos opciones de años
+        colNumeroTarjeta.setCellValueFactory(new PropertyValueFactory<>("numeroTarjeta"));//00011223  valores para colNumeroTarjeta para que use la propiedad numeroTarjeta de los objetos Tarjeta
+        colTipoTarjeta.setCellValueFactory(new PropertyValueFactory<>("tipoTarjeta"));//00011223 valores para colTipoTarjeta para que use la propiedad tipoTarjeta de los objetos Tarjeta
+        colIDReporteA.setCellValueFactory(new PropertyValueFactory<>("ID"));
+        colClienteCompraReporteA.setCellValueFactory(new PropertyValueFactory<>("listaCompraCliente"));
 
         tvReporteD.getItems().clear();
 
         compraDAO.BorrarTablaCompra();
         tarjetaDAO.BorrarTablaTarjeta();
         clienteDAO.BorrarTablaCliente();
-
         clienteDAO.crearTablaCliente();
         tarjetaDAO.crearTablaTarjeta();
         compraDAO.crearTablaCompra();
@@ -668,17 +685,46 @@ public class HelloController{
                 writer.write(line);
                 writer.newLine();
             }
+            Alert alert = new Alert(Alert.AlertType.INFORMATION); // 00082923 declaramos alerta para avisar se creo
+            alert.setTitle("Guardado..."); // 00082923 titulo de alerta
+            alert.setHeaderText("Consulta almacenada"); // 00082923 encabezado de alerta
+            alert.setContentText("La consulta que realizaste se guardo correctamente, puedes encontrarla en reportes!"); // 00082923 texto de la alerta
+            alert.showAndWait(); // 00082923 muestra alerta hasta que se cierre
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     @FXML
-    private void mostrarTarjetasPorId() {
-        int clienteId = Integer.parseInt(tfClienteId.getText());
-        List<Tarjeta> tarjetas = tarjetaDAO.bucarTarjetasPorId(clienteId);
-        System.out.println(tarjetas);
-        tvTarjetas.getItems().setAll(tarjetas);
+    private void mostrarTarjetasPorId() {//00011223 creamos el metodo para mostrar las tarjetas
+        int clienteId = Integer.parseInt(tfClienteId.getText());//00011223 agarramos el texto que se ingreso el el tfClienteid y lo convertimos a entero y lo asignamos a la variable que acabamos de crear clienteId
+        List<Tarjeta> tarjetas = tarjetaDAO.bucarTarjetasPorId(clienteId);//00011223  llamamos el metodo buscarTarjetasPorId de la clase tarjetaDAO y le pasamos como parametro el clienteId se almacena el resultafo en la variable tarjetas que acabamos de crear
+        System.out.println(tarjetas);//00011223 imprime las tarjetas en la consola (para ver que si funcionara xd)
+        tvTarjetas.getItems().setAll(tarjetas);//00011223 actualiza ael table view con la lista de tarjetas
+    }
+
+    @FXML
+    private void guardarArchivoReporteC() {//00011223 metodo para guardar el reporte en un txt
+        ObservableList<Tarjeta> tarjetas = tvTarjetas.getItems();//00011223 obtiene la lista de lso objetos Tarjeta desde el table view
+        if (tarjetas.isEmpty()) {return;}//00011223 verifica si la lista de tarjetas esta vacia
+
+        String ahora = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd_HH-mm-ss"));//00011223 variable para tener la fecha y hora actual
+        String path = UserValidator.getInstance().getUserPath() + "ReporteC " + ahora + ".txt";//00011223 construye la ruta del archivo de reporte utilizando el camino del usuario y la fecha y hora actual.
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(path))) {//00011223 intenta abrir un BufferedWriter para escribir en el archivo especificado en path
+            for (Tarjeta tarjeta : tarjetas) {//00011223 recorre cada objeto Tarjeta en la lista tarjetas
+                String line = "Numero de Tarjeta: " + tarjeta.getNumeroTarjeta() + ", Tipo de Tarjeta: " + tarjeta.getTipoTarjeta();//00011223 variable con el numero de tarjeta y el tipo de tarjeta
+                writer.write(line);//00011223 escribe la linea en el archivo
+                writer.newLine();//00011223 escribe una nueva linea
+            }
+            Alert alert = new Alert(Alert.AlertType.INFORMATION); // 00082923 declaramos alerta para avisar se creo
+            alert.setTitle("Guardado..."); // 00082923 titulo de alerta
+            alert.setHeaderText("Consulta almacenada"); // 00082923 encabezado de alerta
+            alert.setContentText("La consulta que realizaste se guardo correctamente, puedes encontrarla en reportes!"); // 00082923 texto de la alerta
+            alert.showAndWait(); // 00082923 muestra alerta hasta que se cierre
+
+        } catch (IOException e) {e.printStackTrace();//imprime si ocurre un error
+        }
     }
 
     @FXML
@@ -716,4 +762,62 @@ public class HelloController{
         }
     }
 
+}
+
+    private void BuscarReporteB() { //00082923 funcion para al darle al boton de buscar
+        try { // 00082923 apertura try catch
+            int clienteId = Integer.parseInt(idTextFieldB.getText());  // 00082923 toma el ID y lo hace entero
+            int mes = mesComboBoxB.getSelectionModel().getSelectedIndex() + 1; // 00082923 toma el mes seleccionado en el ComboBox y le suma 1 para ajustarlo al formato SQL
+            int anio = Integer.parseInt(anioComboBoxB.getValue()); //00082923 Obtiene el año seleccionado en el ComboBox
+
+            double totalGasto = compraDAO.obtenerTotalGastoPorClienteYMes(mes, anio, clienteId); // 00082923 toma el valor de la consulta
+            totalLabelB.setText("Total gastado: $" + totalGasto); // 00082923 actualiza el label con el total
+        } catch (NumberFormatException e) { // 00082923 cierre try catch
+            totalLabelB.setText("Datos no validos"); // 00082923 mensaje en caso de excepcion
+        } catch (Exception e) {  // 00082923 cierre segundo caso de try catch
+            totalLabelB.setText("Error en la busqueda"); // 00082923 mensaje en caso de excepcion general
+            e.printStackTrace(); // 00082923 imprime la excepcion
+        }
+    }
+
+    @FXML
+    private void GuardarArchivoReporteB() { //00082923 declaracion funcion para guardar el reporte como txt
+        String clienteId = idTextFieldB.getText(); // 00082923 obtiene el ID
+        String mes = mesComboBoxB.getValue(); // 00082923 obtiene el mes del combo Box
+        String anio = anioComboBoxB.getValue(); // 00082923 obtiene el año del combo Box
+        String totalGastado = totalLabelB.getText(); // 00082923 toma el total del label
+
+
+        if (clienteId.isEmpty() || mes == null || anio.isEmpty() || totalGastado.isEmpty()) { // 00082923 si los campos estan vacios
+            Alert alert = new Alert(Alert.AlertType.ERROR); // 00082923 declaramos alerta error
+            alert.setTitle("Datos"); // 00082923 titulo de alerta
+            alert.setHeaderText("Datos faltantes"); // 00082923 encabezado de alerta
+            alert.setContentText("No hay datos que guardar"); // 00082923 texto de la alerta
+            alert.showAndWait(); // 00082923 muestra alerta hasta que se cierre
+            return; // 00082923 se sale
+        }
+
+        String ahora = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd_HH-mm-ss")); // 00082923 fecha de ahora
+        String path = UserValidator.getInstance().getUserPath() + "ReporteB " + ahora + ".txt"; // 00082923 ruta con el nombre de reporte
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(path))) {
+            writer.write("Reporte B"); // 00082923 pone el titulo
+            writer.newLine(); // 00082923 salta la linea
+            writer.write("Cliente ID: " + clienteId); // 00082923 pone el id del cliente
+            writer.newLine(); // 00082923 salta la linea
+            writer.write("Mes: " + mes); // 00082923 pone el mes en que se hizo
+            writer.newLine(); // 00082923 salta la linea
+            writer.write("Anio: " + anio); // 00082923 pone el año en que se hizo
+            writer.newLine(); // 00082923 salta la linea
+            writer.write("Total Gastado: " + totalGastado); // 00082923 pone el total que se gasto
+            writer.newLine(); // 00082923 salta la
+            Alert alert = new Alert(Alert.AlertType.INFORMATION); // 00082923 declaramos alerta para avisar se creo
+            alert.setTitle("Guardado..."); // 00082923 titulo de alerta
+            alert.setHeaderText("Consulta almacenada"); // 00082923 encabezado de alerta
+            alert.setContentText("La consulta que realizaste se guardo correctamente, puedes encontrarla en reportes!"); // 00082923 texto de la alerta
+            alert.showAndWait(); // 00082923 muestra alerta hasta que se cierre
+        } catch (IOException e) { //00082923 cierre try catch
+            e.printStackTrace(); // 00082923 imprime la excepcion
+        }
+    }
 }

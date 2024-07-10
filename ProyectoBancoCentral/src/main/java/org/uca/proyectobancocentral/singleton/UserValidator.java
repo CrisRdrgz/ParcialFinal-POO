@@ -22,6 +22,7 @@ public class UserValidator {
             this.servername = username;
         }
     }
+
     public static UserValidator getInstance() {
         if(instance == null) {
             instance = new UserValidator();

@@ -1,0 +1,2 @@
+Numero de Tarjeta: XXXX XXXX XXXX 0080, Tipo de Tarjeta: Debito
+Numero de Tarjeta: N/A, Tipo de Tarjeta: credito

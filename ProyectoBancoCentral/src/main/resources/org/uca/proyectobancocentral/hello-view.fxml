@@ -1,20 +1,156 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<VBox alignment="CENTER" prefHeight="600.0" prefWidth="800.0" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.uca.proyectobancocentral.HelloController">
-  <TabPane prefHeight="600.0" prefWidth="800.0">
-      <Tab closable="false" text="Reporte A">
-          <VBox alignment="CENTER" spacing="10.0" style="-fx-background-color: E8E6D9;">
-            <children>
-               <Label text="Lista De Compras De Clientes" textAlignment="CENTER">
+<VBox alignment="CENTER" prefHeight="600.0" prefWidth="800.0" spacing="20.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.uca.proyectobancocentral.HelloController">
+    <!-- 00082923 Define VBox con alineacion centrada y controlador -->
+    <TabPane prefHeight="600.0" prefWidth="800.0"> <!-- 00082923 Define TabPane -->
+        <Tab closable="false" text="Reporte A"> <!-- 00082923 Pestaña de reporte A -->
+            <VBox alignment="CENTER" spacing="10.0" style="-fx-background-color: #EEEDEB;"> <!-- 00082923 VBox dentro de Tab -->
+                <children>
+                    <Label text="Lista De Compras De Clientes" textAlignment="CENTER">
+                        <font>
+                            <Font name="System Bold" size="18.0" />
+                        </font>
+                    </Label>
+                    <Label text="Ingresa el ID del Cliente" />
+                    <TextField fx:id="txIDReporteA" alignment="TOP_CENTER" prefHeight="26.0" prefWidth="715.0" promptText="Ingrese ID del cliente">
+                  <opaqueInsets>
+                     <Insets />
+                  </opaqueInsets>
+                  <VBox.margin>
+                     <Insets left="300.0" right="300.0" />
+                  </VBox.margin></TextField>
+                    <Label text="Ingresa la fecha de la compra que deseas visualizar" />
+                    <Label text="Fecha desde:" />
+                    <DatePicker fx:id="dtFechaReporteA" prefHeight="26.0" prefWidth="178.0" promptText="Date" />
+                    <Label text="Fecha Hasta:" />
+                    <DatePicker promptText="Date" />
+                    <Button fx:id="btnBuscarReporteA" mnemonicParsing="false" style="-fx-background-color: E6B9A6;" text="Buscar" />
+                    <TableView fx:id="tvComprasReporteA" prefHeight="233.0" prefWidth="800.0" style="-fx-background-color: #F3E0D8;">
+                        <columns>
+                            <TableColumn fx:id="colIDReporteA" prefWidth="94.5999892950058" text="ID" />
+                            <TableColumn fx:id="colClienteCompraReporteA" prefWidth="671.7999649047852" text="Lista de Clientes de sus Compras Realizadas" />
+                        </columns>
+                  <VBox.margin>
+                     <Insets left="10.0" right="10.0" />
+                  </VBox.margin>
+                    </TableView>
+                    <Button fx:id="btnGuardarArchivoReporteA" mnemonicParsing="false" style="-fx-background-color: E6B9A6;" text="Guardar Archivo" />
+                </children>
+            </VBox>
+        </Tab>
+    <Tab closable="false" text="Reporte B">       <!-- 00082923 Pestaña Reporte B -->
+
+        <VBox alignment="CENTER" spacing="10.0" style="-fx-background-color: #EEEDEB;"> <!-- 00082923 VBox con color de fondo -->
+            <children>           <!-- 00082923 Elementos hijos de VBox -->
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Reporte B" wrappingWidth="86.13678169250488"> <!-- 00082923 Texto Reporte B -->
+                  <VBox.margin>
+                     <Insets bottom="30.0" /> <!-- 00082923 Margen inferior -->
+                  </VBox.margin>
                   <font>
-                     <Font size="14.0" />
+                     <Font name="System Bold" size="18.0" /> <!-- 00082923 Fuente -->
+                  </font>
+               </Text>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Introduzca el ID del cliente con su mes y año de busqueda" textAlignment="CENTER">
+                   <!-- 00082923 Texto con instruccion -->
+                  <VBox.margin>
+                     <Insets bottom="20.0" /> <!-- 00082923 Margen inferior -->
+                  </VBox.margin>
+                  <font>
+                     <Font size="14.0" /> <!-- 00082923 Fuente -->
+                  </font>
+               </Text>
+               <HBox prefHeight="80.0" prefWidth="200.0"> <!-- 00082923 HBox -->
+                  <children> <!-- 00082923 Elementos hijos de HBox -->
+                     <VBox prefHeight="96.0" prefWidth="266.0"> <!-- 00082923 VBox para Mes -->
+                        <children> <!-- 00082923 Elementos hijos de VBox mes -->
+                           <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Mes"> <!-- 00082923 Texto Mes -->
+                              <VBox.margin>
+                                 <Insets left="120.0" /> <!-- 00082923 Margen izquierdo para centrar -->
+                              </VBox.margin>
+                              <font>
+                                 <Font size="14.0" /> <!-- 00082923 Fuente -->
+                              </font>
+                           </Text>
+                           <ComboBox fx:id="mesComboBoxB" prefWidth="150.0"> <!-- 00082923 ComboBox para conseguir mes -->
+                              <VBox.margin>
+                                 <Insets left="60.0" top="10.0" /> <!-- 00082923 Margen izquierdo y superior -->
+                              </VBox.margin>
+                           </ComboBox>
+                        </children>
+                     </VBox>
+                     <VBox prefHeight="80.0" prefWidth="266.0"> <!-- 00082923 VBox para el año -->
+                        <children> <!-- 00082923 Elementos hijos de VBox -->
+                           <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Año"> <!-- 00082923 Texto Año -->
+                              <VBox.margin>
+                                 <Insets left="120.0" /> <!-- 00082923 Margen izquierdo para centrar -->
+                              </VBox.margin>
+                              <font>
+                                 <Font size="14.0" /> <!-- 00082923 Fuente -->
+                              </font>
+                           </Text>
+                           <ComboBox fx:id="anioComboBoxB" prefWidth="150.0"> <!-- 00082923 ComboBox para conseguir año -->
+                              <opaqueInsets>
+                                 <Insets />
+                              </opaqueInsets>
+                              <VBox.margin>
+                                 <Insets left="60.0" top="10.0" /> <!-- 00082923 Margen izquierdo y superior -->
+                              </VBox.margin>
+                           </ComboBox>
+                        </children>
+                     </VBox>
+                     <VBox prefHeight="200.0" prefWidth="266.0"> <!-- 00082923 VBox para el ID -->
+                        <children> <!-- 00082923 Elementos hijos de VBox -->
+                           <Text strokeType="OUTSIDE" strokeWidth="0.0" text="ID"> <!-- 00082923 Texto ID -->
+                              <VBox.margin>
+                                 <Insets left="120.0" /> <!-- 00082923 Margen izquierdo para centrar -->
+                              </VBox.margin>
+                              <font>
+                                 <Font size="14.0" /> <!-- 00082923 Fuente -->
+                              </font>
+                           </Text>
+                           <TextField fx:id="idTextFieldB" promptText="Ingrese ID del cliente"> <!-- 00082923 TextField para conseguir ID -->
+                              <VBox.margin>
+                                 <Insets left="60.0" right="60.0" top="10.0" /> <!-- 00082923 Margen izquierdo, derecho y superior -->
+                              </VBox.margin>
+                           </TextField>
+                        </children>
+                     </VBox>
+                  </children>
+               </HBox>
+               <Button fx:id="buscarButtonB" mnemonicParsing="false" onAction="#BuscarReporteB" style="-fx-background-color: E6B9A6;" text="Buscar" />
+                <!-- 00082923 Boton de Buscar con color -->
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Total dinero gastado en el mes"> <!-- 00082923 Texto Total gastado -->
+                  <VBox.margin>
+                     <Insets top="20.0" /> <!-- 00082923 Margen superior -->
+                  </VBox.margin>
+                  <font>
+                     <Font size="14.0" /> <!-- 00082923 Fuente -->
+                  </font>
+               </Text>
+               <Label fx:id="totalLabelB" text="Total gastado"> <!-- 00082923 Label para poner el Total gastado -->
+                  <VBox.margin>
+                     <Insets top="10.0" /> <!-- 00082923 Margen superior para separar -->
+                  </VBox.margin>
+                  <font>
+                     <Font size="14.0" /> <!-- 00082923 Fuente -->
                   </font>
                </Label>
+
                <Label text="Ingresa el ID del Cliente" />
                <TextField fx:id="txIDReporteA" alignment="TOP_CENTER" prefHeight="26.0" prefWidth="715.0" promptText="ID Cliente" />
                <Label text="Ingresa la fecha de la compra que deseas visualizar" />
@@ -70,10 +206,84 @@
               </columns>
           </TableView>
           <Button onAction="#handleBotonGuardarArchivoReporteD" text="Guardar archivo" />
+               <Button fx:id="guardarArchivoButtonB" mnemonicParsing="false" onAction="#GuardarArchivoReporteB" style="-fx-background-color: E6B9A6;" text="Guardar Archivo" />
+                <!-- 00082923 Boton para Guardar Archivo con color -->
+            </children>
       </VBox>
     </Tab>
+      <Tab closable="false" text="Reporte C"> <!-- 00082923 Pestaña Reporte C -->
+          <VBox alignment="CENTER" spacing="10.0" style="-fx-background-color: #EEEDEB;"> <!-- 00082923 VBox con fondo de color -->
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Reporte C"> <!-- 00082923 Texto Reporte C -->
+               <font>
+                  <Font name="System Bold" size="18.0" /> <!-- 00082923 Fuente -->
+               </font>
+               <VBox.margin>
+                  <Insets bottom="10.0" /> <!-- 00082923 Margen inferior -->
+               </VBox.margin>
+            </Text>
+              <Label text="Tarjetas asociadas a un cliente"> <!-- 00082923 Label Tarjetas -->
+               <font>
+                  <Font size="14.0" /> <!-- 00082923 Fuente -->
+               </font></Label>
+              <Label text="ID Cliente"> <!-- 00082923 Label ID Cliente -->
+               <font>
+                  <Font size="14.0" /> <!-- 00082923 Fuente -->
+               </font></Label>
+              <TextField fx:id="tfClienteId" prefHeight="26.0" prefWidth="778.0" promptText="Ingrese ID del cliente"> <!-- 00082923 TextField ID Cliente -->
+               <VBox.margin>
+                  <Insets left="300.0" right="300.0" /> <!-- 00082923 Margen izquierdo y derecho -->
+               </VBox.margin></TextField>
+              <Button onAction="#mostrarTarjetasPorId" style="-fx-background-color: E6B9A6;" text="Buscar" /> <!-- 00082923 Boton Buscar -->
+              <TableView fx:id="tvTarjetas" prefHeight="300.0" prefWidth="600.0" style="-fx-background-color: #F3E0D8;"> <!-- 00082923 Tabla Tarjetas con color -->
+                  <columns> <!-- 00082923 Columnas de la tabla -->
+                      <TableColumn fx:id="colNumeroTarjeta" prefWidth="300.0" text="Numero de Tarjeta" /> <!-- 00082923 Columna Numero de Tarjeta -->
+                      <TableColumn fx:id="colTipoTarjeta" prefWidth="300.0" text="Tipo de Tarjeta" /> <!-- 00082923 Columna Tipo de Tarjeta -->
+                  </columns>
+               <VBox.margin>
+                  <Insets left="20.0" right="20.0" /> <!-- 00082923 Margen izquierdo y derecho -->
+               </VBox.margin>
+              </TableView>
+            <Button mnemonicParsing="false" onAction="#guardarArchivoReporteC" style="-fx-background-color: E6B9A6;" text="Guardar Archivo" />
+          </VBox>
+      </Tab>
+      <Tab closable="false" text="Reporte D"> <!-- 00082923 Pestaña Reporte D -->
+          <VBox alignment="CENTER" spacing="10.0" style="-fx-background-color: #EEEDEB;"> <!-- 00082923 VBox con fondo de color -->
+              <Label text="Reporte D"> <!-- 00082923 Label Reporte D -->
+               <font>
+                  <Font name="System Bold" size="18.0" /> <!-- 00082923 Fuente -->
+               </font></Label>
+              <Label text="Clientes por facilitador"> <!-- 00082923 Label Clientes por facilitador -->
+               <font>
+                  <Font size="14.0" /> <!-- 00082923 Fuente -->
+               </font>
+              </Label>
+              <ComboBox fx:id="cbReporteD" prefWidth="200.0" /> <!-- 00082923 ComboBox Reporte D -->
+              <Button onAction="#handleBotonSeleccionarReporteD" style="-fx-background-color: #E6B9A6;" text="Seleccionar"> <!-- 00082923 Boton de Seleccionar -->
+               <VBox.margin>
+                  <Insets bottom="5.0" top="10.0" /> <!-- 00082923 Margen superior e inferior -->
+               </VBox.margin></Button>
+              <TableView fx:id="tvReporteD" prefHeight="300.0" prefWidth="600.0" style="-fx-background-color: #F3E0D8;"> <!-- 00082923 Tabla Reporte D con color-->
+                  <columns> <!-- 00082923 Columnas de la tabla -->
+                      <TableColumn fx:id="colIdReporteD" prefWidth="40.0" text="ID" /> <!-- 00082923 Columna ID -->
+                      <TableColumn fx:id="colNombreReporteD" prefWidth="200.0" text="Nombre" /> <!-- 00082923 Columna Nombre -->
+                      <TableColumn fx:id="colDireccionReporteD" prefWidth="225.0" text="Direccion" /> <!-- 00082923 Columna Direccion -->
+                      <TableColumn fx:id="colTelefonoReporteD" prefWidth="90.0" text="Telefono" /> <!-- 00082923 Columna Telefono -->
+                      <TableColumn fx:id="colCantComprasReporteD" prefWidth="110.39996337890625" text="Cantidad compras" /> <!-- 00082923 Columna Cantidad compras -->
+                      <TableColumn fx:id="colTotalGastadoReporteD" prefWidth="136.0" text="Total gastado ($)" /> <!-- 00082923 Columna Total gastado -->
+                  </columns>
+               <VBox.margin>
+                  <Insets left="6.0" right="6.0" /> <!-- 00082923 Margen izquierdo y derecho para centrar -->
+               </VBox.margin>
+              </TableView>
+              <Button onAction="#handleBotonGuardarArchivoReporteD" style="-fx-background-color: #E6B9A6;" text="Guardar Archivo"> <!-- 00082923 Boton de Guardar archivo -->
+               <VBox.margin>
+                  <Insets top="10.0" /> <!-- 00082923 Margen superior -->
+               </VBox.margin>
+              </Button>
+          </VBox>
+      </Tab>
       <VBox.margin>
-         <Insets />
+          <Insets /> <!-- 00082923 Margen del VBox -->
       </VBox.margin>
   </TabPane>
 </VBox>

@@ -1,70 +1,70 @@
 package org.uca.proyectobancocentral.Clases; //Paquete donde se encuentra
 
-public class Cliente {
-    private int id; // ID unico del cliente
-    private String nombreCompleto; // Nombre completo del cliente
-    private String direccion; // Direccion del cliente
-    private String telefono; // Número de telefono del cliente
-    private int cantidadCompras;
-    private double totalGastado;
+public class Cliente { //00082923 inicio clase
+    private int id; //00082923 declaramos ID unico del cliente
+    private String nombreCompleto; //00082923 declaramos Nombre completo del cliente
+    private String direccion; //00082923 declaramos Direccion del cliente
+    private String telefono; //00082923 declaramos Número de telefono del cliente
+    private int cantidadCompras; //00082923 declaramos Cantidad de compras hechas
+    private double totalGastado; //00082923 declaramos total gastado
 
-    public Cliente(int id, String nombreCompleto, String direccion, String telefono) {
-        this.id = id; // Pone el ID
-        this.nombreCompleto = nombreCompleto; // Pone el nombre completo
-        this.direccion = direccion; // Pone la direccion
-        this.telefono = telefono; // Pone el telefono
+    public Cliente(int id, String nombreCompleto, String direccion, String telefono) { //00082923 constructor
+        this.id = id; //00082923 Pone el ID
+        this.nombreCompleto = nombreCompleto; //00082923 Pone el nombre completo
+        this.direccion = direccion; //00082923 Pone la direccion
+        this.telefono = telefono; //00082923 Pone el telefono
     }
 
-    public Cliente() {
+    public Cliente() { //00082923 constructor vacio
 
     }
 
     public int getId() {
-        return id; // Devuelve el ID del cliente
+        return id; //00082923 Devuelve el ID del cliente
     }
 
     public void setId(int id) {
-        this.id = id; // Pone el ID del cliente
+        this.id = id; //00082923 Pone el ID del cliente
     }
 
     public String getNombreCompleto() {
-        return nombreCompleto; // Devuelve el nombre completo del cliente
+        return nombreCompleto; //00082923 Devuelve el nombre completo del cliente
     }
 
     public void setNombreCompleto(String nombreCompleto) {
-        this.nombreCompleto = nombreCompleto; // Pone el nombre completo del cliente
+        this.nombreCompleto = nombreCompleto; //00082923 Pone el nombre completo del cliente
     }
 
     public String getDireccion() {
-        return direccion; // Devuelve la direccion del cliente
+        return direccion; //00082923 Devuelve la direccion del cliente
     }
 
     public void setDireccion(String direccion) {
-        this.direccion = direccion; // Pone la direccion del cliente
+        this.direccion = direccion; //00082923 Pone la direccion del cliente
     }
 
     public String getTelefono() {
-        return telefono; // Devuelve el telefono del cliente
+        return telefono; //00082923 Devuelve el telefono del cliente
     }
 
     public void setTelefono(String telefono) {
-        this.telefono = telefono; // Pone el telefono del cliente
+        this.telefono = telefono; //00082923 Pone el telefono del cliente
     }
 
     public int getCantidadCompras() {
         return cantidadCompras;
-    }
+    } //00082923 devuelve cantidad de compras
 
     public void setCantidadCompras(int cantidadCompras) {
-        this.cantidadCompras = cantidadCompras;
+        this.cantidadCompras = cantidadCompras; //00082923 pone la cantidad de compras
     }
 
     public double getTotalGastado() {
         return totalGastado;
-    }
+    } //00082923 devuelve total gastado
 
     public void setTotalGastado(double totalGastado) {
         this.totalGastado = totalGastado;
-    }
+    } //00082923 pone el total gastado
 }
 
