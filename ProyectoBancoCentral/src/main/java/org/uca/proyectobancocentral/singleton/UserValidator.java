@@ -12,13 +12,13 @@ public class UserValidator {
         } else if ("abra3".equals(username)) {
             this.servername = "GERMAN";
             this.userPath = "C:/Users/abra3/OneDrive/Desktop/ENTREGAFINAL/ParcialFinal-POO/ProyectoBancoCentral/src/main/resources/org/uca/proyectobancocentral/Reportes/";
+        } else if ("Cristian Rodríguez".equals(username)) {
+            this.servername = "CRISTIAN-PC";
+            this.userPath = "C:/Users/Quick_SPCS/Desktop/Labs/ParcialFinal-POO/ProyectoBancoCentral/src/main/resources/org/uca/proyectobancocentral/Reportes/";
         } else if ("DELL 7280".equals(username)) {
             System.out.println("Entre");
             this.servername = "DESKTOP-3OJ0C1N";
             this.userPath = "C:/Users/DELL 7280/Documents/ParcialFinal-POO/ProyectoBancoCentral/src/main/resources/org/uca/proyectobancocentral/Reportes/";
-        } else if("".equals(username)){
-            this.servername = "";
-            this.userPath = "";
         } else {
             this.servername = username;
         }

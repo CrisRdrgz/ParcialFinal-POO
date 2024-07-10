@@ -61,6 +61,31 @@ public class CompraDAO {
         }
     }
 
+    public double obtenerTotalGastoPorClienteYMes(int mes, int anio, int clienteId) { // 00082923 declaramos funcion para el query
+        double totalGasto = 0; // 00082923 declaramos variable a retornar
+        String query = "SELECT SUM(co.total) AS total_gastado " + // 00082923 seleccionamos la sumatoria de los totales
+                "FROM Compra co " +  // 00082923 de la tabla de compra que llamaremos co
+                "INNER JOIN Tarjeta t ON co.id_tarjeta = t.id " +  // 00082923 donde se iguala la tarjeta de compra con el id de tarjeta
+                "WHERE t.id_cliente = ? AND MONTH(co.fecha) = ? AND YEAR(co.fecha) = ?";  // 00082923 donde dejamos los espacios para colocar ID, mes y año
+        try { // 00082923 inicio try catch
+            Connection connection = DatabaseConnection.getInstance().getConnection();  // 00082923 obtiene una conexion a la base de datos
+            PreparedStatement statement = connection.prepareStatement(query); // 00082923 prepara la declaracion con el query dado
+            statement.setInt(1, clienteId); // 00082923 establece el primer ? como el de ID
+            statement.setInt(2, mes); // 00082923 establece el segundo ? como el de mes
+            statement.setInt(3, anio); // 00082923 establece el tercer ? como el de año
+            ResultSet resultSet = statement.executeQuery(); // 00082923 Ejecuta el query
+            if (resultSet.next()) { // 00082923 si hay resultado
+                totalGasto = resultSet.getDouble("total_gastado"); // 00082923 obtiene el valor de la columna y lo asigna a totalGasto
+            }
+            resultSet.close(); // 00082923 cierra el resultSet
+            statement.close(); // 00082923 cierra la declaracion
+            connection.close(); // 00082923 cierra la conexion a la BD
+        } catch (SQLException e) { // 00082923 cierre try catch
+            e.printStackTrace(); // 00082923 imprime error
+        }
+        return totalGasto; // 00082923 devuelve el resultado del query
+    }
+
     public List<Compra> mostrarIDPorCompra(int clienteId, LocalDate fechaInicio, LocalDate fechaFin) {
         List<Compra> compras = new ArrayList<>();
         String query = "SELECT c.id, c.fecha, c.total, c.descripcion, c.id_tarjeta " +
@@ -96,4 +121,5 @@ public class CompraDAO {
 //        }
         return compras;
 }
+
 }
