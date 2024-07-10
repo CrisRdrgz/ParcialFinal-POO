@@ -1,0 +1,2 @@
+ID: 6, Nombre: Sofia Margarita Castillo Lopez, Dirección: Avenida Los Héroes 202, San Salvador, Teléfono: 70588799, Cantidad Compras: 4, Total Gastado: $2580.69
+ID: 7, Nombre: Miguel Angel Hernandez Torres, Dirección: Calle San Juan 303, San Miguel, Teléfono: 70201579, Cantidad Compras: 1, Total Gastado: $220.90

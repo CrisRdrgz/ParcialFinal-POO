@@ -48,6 +48,7 @@
                   <TableColumn fx:id="colTipoTarjeta" prefWidth="300.0" text="Tipo de Tarjeta" />
               </columns>
           </TableView>
+          <Button text="Guardar archivo" onAction="#guardarArchivoReporteC"/>
       </VBox>
     </Tab>
     <Tab closable="false" text="Reporte D">
