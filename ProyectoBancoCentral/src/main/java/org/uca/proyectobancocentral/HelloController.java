@@ -50,13 +50,31 @@ public class HelloController{
     @FXML
     private TableColumn<Cliente, Double> colTotalGastadoReporteD;
     @FXML
-    private TableView<Tarjeta> tvTarjetas;
+    private TableView<Tarjeta> tvTarjetas;//00011223 declaro un table view que mostrara la lista de Tarjetas en la interfaz grafica
     @FXML
-    private TableColumn<Tarjeta, String> colNumeroTarjeta;
+    private TableColumn<Tarjeta, String> colNumeroTarjeta;//00011223 declaro una columna de la tbla view que mostrar el numero de la tarjeta en la interfaza grafica
     @FXML
-    private TableColumn<Tarjeta, String> colTipoTarjeta;
+    private TableColumn<Tarjeta, String> colTipoTarjeta;//00011223 declaro una columna de la table viwe que mostrara de que tipo es la tarjeta
     @FXML
-    private TextField tfClienteId;
+
+    private TextField tfClienteId;//0011223 declaro un textfield donde se ingresara el id del cliente para ver sus tarjetas
+    @FXML
+    private TableView<Compra> tvComprasReporteA;
+    @FXML
+    private TableColumn<Compra, String> colIDReporteA;
+    @FXML
+    private TableColumn<Compra, String> colClienteCompraReporteA;
+    @FXML
+    private Button btnBuscarReporteA;
+    @FXML
+    private Button btnGuardarArchivoReporteA;
+    @FXML
+    private TextField txIDReporteA;
+    @FXML
+    private DatePicker dtFechaInicioReporteA;
+    @FXML
+    private DatePicker dtFechaFinalReporteA;
+
 
     private ClienteDAO clienteDAO = new ClienteDAO();
     private TarjetaDAO tarjetaDAO = new TarjetaDAO();
@@ -74,9 +92,11 @@ public class HelloController{
         mesComboBoxB.getItems().addAll("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto",
                 "Septiembre", "Octubre", "Noviembre", "Diciembre"); // 00082923 le ponemos las opciones de meses
         anioComboBoxB.getItems().addAll("2023", "2024"); // 00082923 le ponemos opciones de años
+        colNumeroTarjeta.setCellValueFactory(new PropertyValueFactory<>("numeroTarjeta"));//00011223  valores para colNumeroTarjeta para que use la propiedad numeroTarjeta de los objetos Tarjeta
+        colTipoTarjeta.setCellValueFactory(new PropertyValueFactory<>("tipoTarjeta"));//00011223 valores para colTipoTarjeta para que use la propiedad tipoTarjeta de los objetos Tarjeta
+        colIDReporteA.setCellValueFactory(new PropertyValueFactory<>("ID"));
+        colClienteCompraReporteA.setCellValueFactory(new PropertyValueFactory<>("listaCompraCliente"));
 
-        colNumeroTarjeta.setCellValueFactory(new PropertyValueFactory<>("numeroTarjeta"));
-        colTipoTarjeta.setCellValueFactory(new PropertyValueFactory<>("tipoTarjeta"));
 
         tvReporteD.getItems().clear();
 
@@ -666,11 +686,39 @@ public class HelloController{
     }
 
     @FXML
-    private void mostrarTarjetasPorId() {
-        int clienteId = Integer.parseInt(tfClienteId.getText());
-        List<Tarjeta> tarjetas = tarjetaDAO.bucarTarjetasPorId(clienteId);
-        System.out.println(tarjetas);
-        tvTarjetas.getItems().setAll(tarjetas);
+    private void mostrarTarjetasPorId() {//00011223 creamos el metodo para mostrar las tarjetas
+        int clienteId = Integer.parseInt(tfClienteId.getText());//00011223 agarramos el texto que se ingreso el el tfClienteid y lo convertimos a entero y lo asignamos a la variable que acabamos de crear clienteId
+        List<Tarjeta> tarjetas = tarjetaDAO.bucarTarjetasPorId(clienteId);//00011223  llamamos el metodo buscarTarjetasPorId de la clase tarjetaDAO y le pasamos como parametro el clienteId se almacena el resultafo en la variable tarjetas que acabamos de crear
+        System.out.println(tarjetas);//00011223 imprime las tarjetas en la consola (para ver que si funcionara xd)
+        tvTarjetas.getItems().setAll(tarjetas);//00011223 actualiza ael table view con la lista de tarjetas
+    }
+
+    @FXML
+    private void guardarArchivoReporteC() {//00011223 metodo para guardar el reporte en un txt
+        ObservableList<Tarjeta> tarjetas = tvTarjetas.getItems();//00011223 obtiene la lista de lso objetos Tarjeta desde el table view
+        if (tarjetas.isEmpty()) {return;}//00011223 verifica si la lista de tarjetas esta vacia
+
+        String ahora = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd_HH-mm-ss"));//00011223 variable para tener la fecha y hora actual
+        String path = UserValidator.getInstance().getUserPath() + "ReporteC " + ahora + ".txt";//00011223 construye la ruta del archivo de reporte utilizando el camino del usuario y la fecha y hora actual.
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(path))) {//00011223 intenta abrir un BufferedWriter para escribir en el archivo especificado en path
+            for (Tarjeta tarjeta : tarjetas) {//00011223 recorre cada objeto Tarjeta en la lista tarjetas
+                String line = "Numero de Tarjeta: " + tarjeta.getNumeroTarjeta() + ", Tipo de Tarjeta: " + tarjeta.getTipoTarjeta();//00011223 variable con el numero de tarjeta y el tipo de tarjeta
+                writer.write(line);//00011223 escribe la linea en el archivo
+                writer.newLine();//00011223 escribe una nueva linea
+            }
+        } catch (IOException e) {e.printStackTrace();//imprime si ocurre un error
+        }
+    }
+
+    @FXML
+    private void mostrarComprasPorID() {
+        int clienteId = Integer.parseInt(txIDReporteA.getText());
+        LocalDate inicio = dtFechaInicioReporteA.getConverter().fromString(dtFechaInicioReporteA.getEditor().getText());
+        LocalDate fin = dtFechaFinalReporteA.getConverter().fromString(dtFechaFinalReporteA.getEditor().getText());
+        List<Compra> compras = compraDAO.mostrarIDPorCompra(clienteId, inicio, fin);
+        System.out.println(compras);
+        tvComprasReporteA.getItems().setAll(compras);
     }
 
     @FXML

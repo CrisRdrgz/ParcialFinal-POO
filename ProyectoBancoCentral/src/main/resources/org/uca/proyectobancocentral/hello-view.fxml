@@ -13,15 +13,40 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
 <VBox alignment="CENTER" prefHeight="600.0" prefWidth="800.0" spacing="20.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.uca.proyectobancocentral.HelloController">
     <!-- 00082923 Define VBox con alineacion centrada y controlador -->
-  <TabPane prefHeight="600.0" prefWidth="800.0">     <!-- 00082923 Define TabPane -->
-      <Tab closable="false" text="Reporte A">  <!-- 00082923 Pestaña de reporte A -->
-          <VBox alignment="CENTER" spacing="10.0">   <!-- 00082923 VBox dentro de Tab -->
-
-          </VBox>
-      </Tab>
+    <TabPane prefHeight="600.0" prefWidth="800.0"> <!-- 00082923 Define TabPane -->
+        <Tab closable="false" text="Reporte A"> <!-- 00082923 Pestaña de reporte A -->
+            <VBox alignment="CENTER" spacing="10.0" style="-fx-background-color: E8E6D9;"> <!-- 00082923 VBox dentro de Tab -->
+                <children>
+                    <Label text="Lista De Compras De Clientes" textAlignment="CENTER">
+                        <font>
+                            <Font size="14.0" />
+                        </font>
+                    </Label>
+                    <Label text="Ingresa el ID del Cliente" />
+                    <TextField fx:id="txIDReporteA" alignment="TOP_CENTER" prefHeight="26.0" prefWidth="715.0" promptText="ID Cliente" />
+                    <Label text="Ingresa la fecha de la compra que deseas visualizar" />
+                    <Label text="Fecha desde:" />
+                    <DatePicker fx:id="dtFechaReporteA" prefHeight="26.0" prefWidth="178.0" promptText="Date" />
+                    <Label text="Fecha Hasta:" />
+                    <DatePicker promptText="Date" />
+                    <Button fx:id="btnBuscarReporteA" mnemonicParsing="false" text="Buscar" />
+                    <TableView fx:id="tvComprasReporteA" prefHeight="233.0" prefWidth="800.0">
+                        <columns>
+                            <TableColumn fx:id="colIDReporteA" prefWidth="94.5999892950058" text="ID" />
+                            <TableColumn fx:id="colClienteCompraReporteA" prefWidth="671.7999649047852" text="Lista de Clientes de sus Compras Realizadas" />
+                        </columns>
+                    </TableView>
+                    <Button fx:id="btnGuardarArchivoReporteA" mnemonicParsing="false" text="Guradar Archivo" />
+                </children>
+            </VBox>
+        </Tab>
     <Tab closable="false" text="Reporte B">       <!-- 00082923 Pestaña Reporte B -->
 
         <VBox alignment="CENTER" spacing="10.0" style="-fx-background-color: #EEEDEB;"> <!-- 00082923 VBox con color de fondo -->

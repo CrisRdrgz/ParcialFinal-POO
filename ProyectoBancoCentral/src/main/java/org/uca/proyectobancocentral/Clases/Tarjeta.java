@@ -73,14 +73,6 @@ public class Tarjeta { //00082923 inicio clase
     }
 
     @Override
-    public String toString() {
-        return "Tarjeta{" +
-                "id=" + id +
-                ", numeroTarjeta='" + numeroTarjeta + '\'' +
-                ", fechaExpiracion=" + fechaExpiracion +
-                ", tipoTarjeta='" + tipoTarjeta + '\'' +
-                ", facilitador='" + facilitador + '\'' +
-                ", clienteId=" + clienteId +
-                '}';
-    }
+    public String toString() {return "Numero tarjeta:"+numeroTarjeta+ " tipo de tarjeta:" + tipoTarjeta;}//00011223 devuelve la cadena con el numero de tarjeta y el tipo de tarjeta
+
 }
