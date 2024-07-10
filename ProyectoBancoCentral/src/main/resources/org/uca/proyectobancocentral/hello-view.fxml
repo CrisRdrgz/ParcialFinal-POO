@@ -16,16 +16,20 @@
                   </font>
                </Label>
                <Label text="Ingresa el ID del Cliente" />
-               <TextField alignment="TOP_CENTER" prefHeight="26.0" prefWidth="715.0" promptText="ID Cliente" />
+               <TextField fx:id="txIDReporteA" alignment="TOP_CENTER" prefHeight="26.0" prefWidth="715.0" promptText="ID Cliente" />
                <Label text="Ingresa la fecha de la compra que deseas visualizar" />
-               <DatePicker prefHeight="26.0" prefWidth="221.0" promptText="Fecha de la compra realizada" />
-               <Button mnemonicParsing="false" text="Buscar" />
-               <TableView prefHeight="353.0" prefWidth="800.0">
+               <Label text="Fecha desde:" />
+               <DatePicker fx:id="dtFechaReporteA" prefHeight="26.0" prefWidth="178.0" promptText="Date" />
+               <Label text="Fecha Hasta:" />
+               <DatePicker promptText="Date" />
+               <Button fx:id="btnBuscarReporteA" mnemonicParsing="false" text="Buscar" />
+               <TableView fx:id="tvComprasReporteA" prefHeight="233.0" prefWidth="800.0">
                  <columns>
-                   <TableColumn prefWidth="94.5999892950058" text="ID" />
-                   <TableColumn prefWidth="671.7999649047852" text="Lista de Compras Realizadas" />
+                   <TableColumn fx:id="colIDReporteA" prefWidth="94.5999892950058" text="ID" />
+                   <TableColumn fx:id="colClienteCompraReporteA" prefWidth="671.7999649047852" text="Lista de Clientes de sus Compras Realizadas" />
                  </columns>
                </TableView>
+               <Button fx:id="btnGuardarArchivoReporteA" mnemonicParsing="false" text="Guradar Archivo" />
             </children></VBox>
       </Tab>
     <Tab closable="false" text="Reporte B">

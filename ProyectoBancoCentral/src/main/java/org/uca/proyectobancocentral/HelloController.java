@@ -49,6 +49,24 @@ public class HelloController{
     private TableColumn<Tarjeta, String> colTipoTarjeta;
     @FXML
     private TextField tfClienteId;
+    @FXML
+    private TableView<Compra> tvComprasReporteA;
+    @FXML
+    private TableColumn<Compra, String> colIDReporteA;
+    @FXML
+    private TableColumn<Compra, String> colClienteCompraReporteA;
+    @FXML
+    private Button btnBuscarReporteA;
+    @FXML
+    private Button btnGuardarArchivoReporteA;
+    @FXML
+    private TextField txIDReporteA;
+    @FXML
+    private DatePicker dtFechaInicioReporteA;
+    @FXML
+    private DatePicker dtFechaFinalReporteA;
+
+
 
     private ClienteDAO clienteDAO = new ClienteDAO();
     private TarjetaDAO tarjetaDAO = new TarjetaDAO();
@@ -65,6 +83,8 @@ public class HelloController{
         cbReporteD.getItems().addAll("Visa", "MasterCard", "American Express", "Discover", "Diners Club");
         colNumeroTarjeta.setCellValueFactory(new PropertyValueFactory<>("numeroTarjeta"));
         colTipoTarjeta.setCellValueFactory(new PropertyValueFactory<>("tipoTarjeta"));
+        colIDReporteA.setCellValueFactory(new PropertyValueFactory<>("ID"));
+        colClienteCompraReporteA.setCellValueFactory(new PropertyValueFactory<>("listaCompraCliente"));
 
         tvReporteD.getItems().clear();
 
@@ -655,5 +675,15 @@ public class HelloController{
         List<Tarjeta> tarjetas = tarjetaDAO.bucarTarjetasPorId(clienteId);
         System.out.println(tarjetas);
         tvTarjetas.getItems().setAll(tarjetas);
+    }
+
+    @FXML
+    private void mostrarComprasPorID() {
+        int clienteId = Integer.parseInt(txIDReporteA.getText());
+        LocalDate inicio = dtFechaInicioReporteA.getConverter().fromString(dtFechaInicioReporteA.getEditor().getText());
+        LocalDate fin = dtFechaFinalReporteA.getConverter().fromString(dtFechaFinalReporteA.getEditor().getText());
+        List<Compra> compras = compraDAO.mostrarIDPorCompra(clienteId, inicio, fin);
+        System.out.println(compras);
+        tvComprasReporteA.getItems().setAll(compras);
     }
 }
