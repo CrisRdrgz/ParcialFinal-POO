@@ -1,0 +1,5 @@
+Reporte B
+Cliente ID: 5
+Mes: Diciembre
+Anio: 2023
+Total Gastado: Total gastado: $491.9
