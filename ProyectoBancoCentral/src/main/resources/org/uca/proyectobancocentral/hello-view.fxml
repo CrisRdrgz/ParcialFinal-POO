@@ -36,25 +36,27 @@
                   </VBox.margin></TextField>
                     <Label text="Ingresa la fecha de la compra que deseas visualizar" />
                     <Label text="Fecha desde:" />
-                    <DatePicker fx:id="dtFechaReporteA" prefHeight="26.0" prefWidth="178.0" promptText="Date" />
+                    <DatePicker fx:id="dtFechaInicioReporteA" prefHeight="26.0" prefWidth="178.0" promptText="Date" />
                     <Label text="Fecha Hasta:" />
-                    <DatePicker promptText="Date" />
-                    <Button fx:id="btnBuscarReporteA" mnemonicParsing="false" style="-fx-background-color: E6B9A6;" text="Buscar" />
+                    <DatePicker  fx:id="dtFechaFinalReporteA" promptText="Date" />
+                    <Button fx:id="btnBuscarReporteA" onAction="#mostrarComprasPorID" mnemonicParsing="false" style="-fx-background-color: E6B9A6;" text="Buscar" />
                     <TableView fx:id="tvComprasReporteA" prefHeight="233.0" prefWidth="800.0" style="-fx-background-color: #F3E0D8;">
                         <columns>
                             <TableColumn fx:id="colIDReporteA" prefWidth="94.5999892950058" text="ID" />
-                            <TableColumn fx:id="colClienteCompraReporteA" prefWidth="671.7999649047852" text="Lista de Clientes de sus Compras Realizadas" />
+                            <TableColumn fx:id="colFechaReporteA" prefWidth="100" text="Fecha" />
+                            <TableColumn fx:id="colTotalReporteA" prefWidth="100" text="Total" />
+                            <TableColumn fx:id="colDescripcionReporteA" prefWidth="100" text="Descripcion" />
+                            <TableColumn fx:id="colIdTarjetaReporteA" prefWidth="100" text="Id Tarjeta" />
                         </columns>
                   <VBox.margin>
                      <Insets left="10.0" right="10.0" />
                   </VBox.margin>
                     </TableView>
-                    <Button fx:id="btnGuardarArchivoReporteA" mnemonicParsing="false" style="-fx-background-color: E6B9A6;" text="Guardar Archivo" />
+                    <Button fx:id="btnGuardarArchivoReporteA" onAction="#handleBotonGuardarArchivoReporteB" mnemonicParsing="false" style="-fx-background-color: E6B9A6;" text="Guardar Archivo" />
                 </children>
             </VBox>
         </Tab>
     <Tab closable="false" text="Reporte B">       <!-- 00082923 Pestaña Reporte B -->
-
         <VBox alignment="CENTER" spacing="10.0" style="-fx-background-color: #EEEDEB;"> <!-- 00082923 VBox con color de fondo -->
             <children>           <!-- 00082923 Elementos hijos de VBox -->
                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Reporte B" wrappingWidth="86.13678169250488"> <!-- 00082923 Texto Reporte B -->
