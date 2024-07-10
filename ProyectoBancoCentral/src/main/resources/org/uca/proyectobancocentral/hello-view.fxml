@@ -7,32 +7,32 @@
 
 <VBox alignment="CENTER" prefHeight="600.0" prefWidth="800.0" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.uca.proyectobancocentral.HelloController">
   <TabPane prefHeight="600.0" prefWidth="800.0">
-      <Tab closable="false" text="Reporte A">
-          <VBox alignment="CENTER" spacing="10.0" style="-fx-background-color: E8E6D9;">
+      <Tab closable="false" text="Reporte A"> <!-- 00125123 Define Vbox -->
+          <VBox alignment="CENTER" spacing="10.0" style="-fx-background-color: E8E6D9;"> <!-- 00125123 Define Vbox -->
             <children>
-               <Label text="Lista De Compras De Clientes" textAlignment="CENTER">
+               <Label text="Lista De Compras De Clientes" textAlignment="CENTER"> <!-- 00125123 Define Label -->
                   <font>
-                     <Font size="14.0" />
+                     <Font size="14.0" /> <!-- 00125123 Define Font -->
                   </font>
                </Label>
-               <Label text="Ingresa el ID del Cliente" />
-               <TextField fx:id="txIDReporteA" alignment="TOP_CENTER" prefHeight="26.0" prefWidth="715.0" promptText="ID Cliente" />
-               <Label text="Ingresa la fecha de la compra que deseas visualizar" />
-               <Label text="Fecha desde:" />
-               <DatePicker fx:id="dtFechaReporteA" prefHeight="26.0" prefWidth="178.0" promptText="Date" />
-               <Label text="Fecha Hasta:" />
-               <DatePicker fx:id="dtFechaFinalReporteA" promptText="Date" />
-               <Button fx:id="btnBuscarReporteA" mnemonicParsing="false" onAction="#mostrarComprasPorID" text="Buscar" />
-               <TableView fx:id="tvComprasReporteA" prefHeight="233.0" prefWidth="800.0">
+               <Label text="Ingresa el ID del Cliente" /> <!-- 00125123 Define Label -->
+               <TextField fx:id="txIDReporteA" alignment="TOP_CENTER" prefHeight="26.0" prefWidth="715.0" promptText="ID Cliente" /> <!-- 00082923 Define TabPane -->
+               <Label text="Ingresa la fecha de la compra que deseas visualizar" /> <!-- 00125123 Define Label -->
+               <Label text="Fecha desde:" /> <!-- 00125123 Define Label -->
+               <DatePicker fx:id="dtFechaReporteA" prefHeight="26.0" prefWidth="178.0" promptText="Date" /> <!-- 00125123 Define DatePicker -->
+               <Label text="Fecha Hasta:" /> <!-- 00125123 Define Laber -->
+               <DatePicker fx:id="dtFechaFinalReporteA" promptText="Date" /> <!-- 00125123 Define DatePicker -->
+               <Button fx:id="btnBuscarReporteA" mnemonicParsing="false" onAction="#mostrarComprasPorID" text="Buscar" /> <!-- 00125123 Define Button -->
+               <TableView fx:id="tvComprasReporteA" prefHeight="233.0" prefWidth="800.0"> <!-- 00125123 Define TableView -->
                  <columns>
-                   <TableColumn fx:id="colIDReporteA" prefWidth="94.5999892950058" text="ID" />
-                   <TableColumn fx:id="colFechaReporteA" prefWidth="162.59996032714844" text="fecha compra" />
-                     <TableColumn fx:id="colTotalReporteA" prefWidth="121.60000610351562" text="Total" />
-                     <TableColumn fx:id="colDescripcionReporteA" minWidth="0.0" prefWidth="268.79998779296875" text="Descripcion" />
-                     <TableColumn fx:id="colIDTarjetaReporteA" prefWidth="149.60003662109375" text="ID Tarjeta" />
+                   <TableColumn fx:id="colIDReporteA" prefWidth="94.5999892950058" text="ID" /> <!-- 00125123 Define TableColumn -->
+                   <TableColumn fx:id="colFechaReporteA" prefWidth="162.59996032714844" text="fecha compra" /> <!-- 00125123 Define TableColumn -->
+                     <TableColumn fx:id="colTotalReporteA" prefWidth="121.60000610351562" text="Total" /> <!-- 00125123 Define TableColumn -->
+                     <TableColumn fx:id="colDescripcionReporteA" minWidth="0.0" prefWidth="268.79998779296875" text="Descripcion" /> <!-- 00125123 Define TableColumn -->
+                     <TableColumn fx:id="colIDTarjetaReporteA" prefWidth="149.60003662109375" text="ID Tarjeta" /> <!-- 00125123 Define TableColumn -->
                  </columns>
                </TableView>
-               <Button fx:id="btnGuardarArchivoReporteA" mnemonicParsing="false" onAction="#handleBotonGuardarArchivoReporteA" text="Guardar Archivo" />
+               <Button fx:id="btnGuardarArchivoReporteA" mnemonicParsing="false" onAction="#handleBotonGuardarArchivoReporteA" text="Guardar Archivo" /> <!-- 00125123 Define Button -->
             </children></VBox>
       </Tab>
     <Tab closable="false" text="Reporte B">
