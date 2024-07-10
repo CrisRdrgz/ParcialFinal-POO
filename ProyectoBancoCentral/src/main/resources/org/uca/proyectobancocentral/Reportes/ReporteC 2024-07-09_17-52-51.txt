@@ -1,0 +1,2 @@
+Numero de Tarjeta: XXXX XXXX XXXX 3467, Tipo de Tarjeta: Debito
+Numero de Tarjeta: N/A, Tipo de Tarjeta: credito
