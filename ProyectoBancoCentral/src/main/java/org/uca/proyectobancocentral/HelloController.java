@@ -4,10 +4,7 @@ import javafx.application.Platform; // 00078323 Importa la clase Platform de Jav
 import javafx.collections.FXCollections; // 00078323 Importa la clase FXCollections para manejar colecciones JavaFX
 import javafx.collections.ObservableList; // 00078323 Importa la clase ObservableList para listas observables de JavaFX
 import javafx.fxml.FXML; // 00078323 Importa la anotación FXML para inyectar componentes en JavaFX
-import javafx.scene.control.ComboBox; // 00078323 Importa la clase ComboBox de JavaFX
-import javafx.scene.control.Label; // 00078323 Importa la clase Label de JavaFX
-import javafx.scene.control.TableColumn; // 00078323 Importa la clase TableColumn de JavaFX
-import javafx.scene.control.TableView; // 00078323 Importa la clase TableView de JavaFX
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory; // 00078323 Importa la clase PropertyValueFactory para las celdas de TableView
 import javafx.stage.Stage; // 00078323 Importa la clase Stage de JavaFX
 import org.uca.proyectobancocentral.Clases.Cliente; // 00078323 Importa la clase Cliente
@@ -63,7 +60,13 @@ public class HelloController { // 00078323 Controlador principal de la aplicaci�
     @FXML
     private TableColumn<Compra, String> colIDReporteA;
     @FXML
-    private TableColumn<Compra, String> colClienteCompraReporteA;
+    private TableColumn<Compra, LocalDate> colFechaReporteA;
+    @FXML
+    private TableColumn<Compra, Double> colTotalReporteA;
+    @FXML
+    private TableColumn<Compra, String> colDescripcionReporteA;
+    @FXML
+    private TableColumn<Compra, Integer> colIdTarjetaReporteA;
     @FXML
     private Button btnBuscarReporteA;
     @FXML
@@ -90,13 +93,17 @@ public class HelloController { // 00078323 Controlador principal de la aplicaci�
         colCantComprasReporteD.setCellValueFactory(new PropertyValueFactory<>("cantidadCompras")); // 00078323 Configura la columna Cantidad de Compras
         colTotalGastadoReporteD.setCellValueFactory(new PropertyValueFactory<>("totalGastado")); // 00078323 Configura la columna Total Gastado
         cbReporteD.getItems().addAll("Visa", "MasterCard", "American Express", "Discover", "Diners Club"); // 00078323 Añade opciones al ComboBox
-      mesComboBoxB.getItems().addAll("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto",
-                "Septiembre", "Octubre", "Noviembre", "Diciembre"); // 00082923 le ponemos las opciones de meses
+        mesComboBoxB.getItems().addAll("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"); // 00082923 le ponemos las opciones de meses
         anioComboBoxB.getItems().addAll("2023", "2024"); // 00082923 le ponemos opciones de años
         colNumeroTarjeta.setCellValueFactory(new PropertyValueFactory<>("numeroTarjeta"));//00011223  valores para colNumeroTarjeta para que use la propiedad numeroTarjeta de los objetos Tarjeta
         colTipoTarjeta.setCellValueFactory(new PropertyValueFactory<>("tipoTarjeta"));//00011223 valores para colTipoTarjeta para que use la propiedad tipoTarjeta de los objetos Tarjeta
-        colIDReporteA.setCellValueFactory(new PropertyValueFactory<>("ID"));
-        colClienteCompraReporteA.setCellValueFactory(new PropertyValueFactory<>("listaCompraCliente"));
+
+
+        colIDReporteA.setCellValueFactory(new PropertyValueFactory<>("id"));
+        colFechaReporteA.setCellValueFactory(new PropertyValueFactory<>("fechaCompra"));
+        colTotalReporteA.setCellValueFactory(new PropertyValueFactory<>("montoTotal"));
+        colDescripcionReporteA.setCellValueFactory(new PropertyValueFactory<>("descripcion"));
+        colIdTarjetaReporteA.setCellValueFactory(new PropertyValueFactory<>("tarjetaId"));
 
         tvReporteD.getItems().clear(); // 00078323 Limpia los ítems de la TableView
 
