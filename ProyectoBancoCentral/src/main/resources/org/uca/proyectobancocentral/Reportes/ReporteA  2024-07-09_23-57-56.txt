@@ -1,0 +1,4 @@
+ID: 5, Fecha Compra: 2023-08-20, Total: 307.45, Descripcion: Gastos médicos, ID Tarjeta: 4
+ID: 10, Fecha Compra: 2024-03-18, Total: 99.99, Descripcion: Accesorios de tecnología, ID Tarjeta: 4
+ID: 18, Fecha Compra: 2023-07-05, Total: 500.0, Descripcion: Regalos de cumpleaños, ID Tarjeta: 4
+ID: 40, Fecha Compra: 2023-11-05, Total: 1673.25, Descripcion: Compra de material de construcción, ID Tarjeta: 4
