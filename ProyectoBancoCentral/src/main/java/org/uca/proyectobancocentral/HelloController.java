@@ -707,6 +707,12 @@ public class HelloController{
                 writer.write(line);//00011223 escribe la linea en el archivo
                 writer.newLine();//00011223 escribe una nueva linea
             }
+            Alert alert = new Alert(Alert.AlertType.INFORMATION); // 00082923 declaramos alerta para avisar se creo
+            alert.setTitle("Guardado..."); // 00082923 titulo de alerta
+            alert.setHeaderText("Consulta almacenada"); // 00082923 encabezado de alerta
+            alert.setContentText("La consulta que realizaste se guardo correctamente, puedes encontrarla en reportes!"); // 00082923 texto de la alerta
+            alert.showAndWait(); // 00082923 muestra alerta hasta que se cierre
+
         } catch (IOException e) {e.printStackTrace();//imprime si ocurre un error
         }
     }
