@@ -734,6 +734,32 @@ public class HelloController { // 00078323 Controlador principal de la aplicaci�
         tvComprasReporteA.getItems().setAll(compras);
     }
 
+  @FXML
+  private void handleBotonGuardarArchivoReporteB() { // 00078323 Maneja la acción del botón para guardar el reporte en un archivo
+    ObservableList<Compra> compras = tvComprasReporteA.getItems(); // 00078323 Obtiene los ítems de la TableView
+    if (compras.isEmpty()) { // 00078323 Verifica si la lista de clientes está vacía
+      return; // 00078323 Sale del método si la lista está vacía
+    }
+    String ahora = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd_HH-mm-ss")); // 00078323 Obtiene la fecha y hora actual formateada
+    System.out.println(ahora); // 00078323 Imprime la fecha y hora actual en la consola
+    System.out.println(System.getProperty("user.dir")); // 00078323 Imprime el directorio de trabajo actual en la consola
+    String path = UserValidator.getInstance().getUserPath() + "ReporteA " +  " " + ahora + ".txt"; // 00078323 Construye la ruta del archivo de reporte
+
+    try (BufferedWriter writer = new BufferedWriter(new FileWriter(path))) { // 00078323 Bloque try-with-resources para escribir en el archivo
+      for (Compra compra : compras) { // 00078323 Itera sobre la lista de clientes
+        String line = String.format("ID: %d, Fecha Compra: %s, Total: %s, Descripcion: %s, ID Tarjeta: %d", compra.getId(), compra.getFechaCompra(), compra.getMontoTotal(), compra.getDescripcion(), compra.getTarjetaId()); // 00078323 Formatea una línea con los datos del cliente
+        writer.write(line); // 00078323 Escribe la línea en el archivo
+        writer.newLine(); // 00078323 Escribe una nueva línea en el archivo
+      }
+      Alert alert = new Alert(Alert.AlertType.INFORMATION); // 00082923 declaramos alerta para avisar se creo
+      alert.setTitle("Guardado..."); // 00082923 titulo de alerta
+      alert.setHeaderText("Consulta almacenada"); // 00082923 encabezado de alerta
+      alert.setContentText("La consulta que realizaste se guardo correctamente, puedes encontrarla en reportes!"); // 00082923 texto de la alerta
+      alert.showAndWait(); // 00082923 muestra alerta hasta que se cierre
+    } catch (IOException e) { // 00078323 Captura excepciones de E/S
+      e.printStackTrace(); // 00078323 Imprime el stack trace de la excepción
+    }
+  }
     @FXML
     private void BuscarReporteB() { //00082923 funcion para al darle al boton de buscar
         try { // 00082923 apertura try catch
