@@ -28,13 +28,15 @@ public class HelloController{
     @FXML
     private ComboBox cbReporteD;
     @FXML
-<<<<<<< HEAD
-    private ComboBox mesComboBoxB;
+    private ComboBox<String>  mesComboBoxB; // 00082923 declaramos el Combo Box de mes
     @FXML
-    private TableView tvReporteD;
-=======
+    private ComboBox<String>  anioComboBoxB; // 00082923 declaramos el Combo Box de año
+    @FXML
+    private TextField idTextFieldB; // 00082923 declaramos el Text field donde va el ID
+    @FXML
+    private Label totalLabelB; // 00082923 declaramos el Label donde se pondra el total
+    @FXML
     private TableView<Cliente> tvReporteD;
->>>>>>> 6c2bef59d24545edfbfee1e2b4e0c5ad60b16331
     @FXML
     private TableColumn<Cliente, Integer> colIdReporteD;
     @FXML
@@ -69,11 +71,10 @@ public class HelloController{
         colCantComprasReporteD.setCellValueFactory(new PropertyValueFactory<>("cantidadCompras"));
         colTotalGastadoReporteD.setCellValueFactory(new PropertyValueFactory<>("totalGastado"));
         cbReporteD.getItems().addAll("Visa", "MasterCard", "American Express", "Discover", "Diners Club");
-<<<<<<< HEAD
-        mesComboBoxB.getItems().addAll("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto",
-                "Septiembre","Octubre","Noviembre","Diciembre"); // cris
+        mesComboBoxB.getItems().addAll("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto",
+                "Septiembre", "Octubre", "Noviembre", "Diciembre"); // 00082923 le ponemos las opciones de meses
+        anioComboBoxB.getItems().addAll("2023", "2024"); // 00082923 le ponemos opciones de años
 
-=======
         colNumeroTarjeta.setCellValueFactory(new PropertyValueFactory<>("numeroTarjeta"));
         colTipoTarjeta.setCellValueFactory(new PropertyValueFactory<>("tipoTarjeta"));
 
@@ -82,8 +83,6 @@ public class HelloController{
         compraDAO.BorrarTablaCompra();
         tarjetaDAO.BorrarTablaTarjeta();
         clienteDAO.BorrarTablaCliente();
->>>>>>> 6c2bef59d24545edfbfee1e2b4e0c5ad60b16331
-
         clienteDAO.crearTablaCliente();
         tarjetaDAO.crearTablaTarjeta();
         compraDAO.crearTablaCompra();
@@ -656,6 +655,11 @@ public class HelloController{
                 writer.write(line);
                 writer.newLine();
             }
+            Alert alert = new Alert(Alert.AlertType.INFORMATION); // 00082923 declaramos alerta para avisar se creo
+            alert.setTitle("Guardado..."); // 00082923 titulo de alerta
+            alert.setHeaderText("Consulta almacenada"); // 00082923 encabezado de alerta
+            alert.setContentText("La consulta que realizaste se guardo correctamente, puedes encontrarla en reportes!"); // 00082923 texto de la alerta
+            alert.showAndWait(); // 00082923 muestra alerta hasta que se cierre
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -668,4 +672,64 @@ public class HelloController{
         System.out.println(tarjetas);
         tvTarjetas.getItems().setAll(tarjetas);
     }
+
+    @FXML
+    private void BuscarReporteB() { //00082923 funcion para al darle al boton de buscar
+        try { // 00082923 apertura try catch
+            int clienteId = Integer.parseInt(idTextFieldB.getText());  // 00082923 toma el ID y lo hace entero
+            int mes = mesComboBoxB.getSelectionModel().getSelectedIndex() + 1; // 00082923 toma el mes seleccionado en el ComboBox y le suma 1 para ajustarlo al formato SQL
+            int anio = Integer.parseInt(anioComboBoxB.getValue()); //00082923 Obtiene el año seleccionado en el ComboBox
+
+            double totalGasto = compraDAO.obtenerTotalGastoPorClienteYMes(mes, anio, clienteId); // 00082923 toma el valor de la consulta
+            totalLabelB.setText("Total gastado: $" + totalGasto); // 00082923 actualiza el label con el total
+        } catch (NumberFormatException e) { // 00082923 cierre try catch
+            totalLabelB.setText("Datos no validos"); // 00082923 mensaje en caso de excepcion
+        } catch (Exception e) {  // 00082923 cierre segundo caso de try catch
+            totalLabelB.setText("Error en la busqueda"); // 00082923 mensaje en caso de excepcion general
+            e.printStackTrace(); // 00082923 imprime la excepcion
+        }
+    }
+
+    @FXML
+    private void GuardarArchivoReporteB() { //00082923 declaracion funcion para guardar el reporte como txt
+        String clienteId = idTextFieldB.getText(); // 00082923 obtiene el ID
+        String mes = mesComboBoxB.getValue(); // 00082923 obtiene el mes del combo Box
+        String anio = anioComboBoxB.getValue(); // 00082923 obtiene el año del combo Box
+        String totalGastado = totalLabelB.getText(); // 00082923 toma el total del label
+
+
+        if (clienteId.isEmpty() || mes == null || anio.isEmpty() || totalGastado.isEmpty()) { // 00082923 si los campos estan vacios
+            Alert alert = new Alert(Alert.AlertType.ERROR); // 00082923 declaramos alerta error
+            alert.setTitle("Datos"); // 00082923 titulo de alerta
+            alert.setHeaderText("Datos faltantes"); // 00082923 encabezado de alerta
+            alert.setContentText("No hay datos que guardar"); // 00082923 texto de la alerta
+            alert.showAndWait(); // 00082923 muestra alerta hasta que se cierre
+            return; // 00082923 se sale
+        }
+
+        String ahora = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd_HH-mm-ss")); // 00082923 fecha de ahora
+        String path = UserValidator.getInstance().getUserPath() + "ReporteB " + ahora + ".txt"; // 00082923 ruta con el nombre de reporte
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(path))) {
+            writer.write("Reporte B"); // 00082923 pone el titulo
+            writer.newLine(); // 00082923 salta la linea
+            writer.write("Cliente ID: " + clienteId); // 00082923 pone el id del cliente
+            writer.newLine(); // 00082923 salta la linea
+            writer.write("Mes: " + mes); // 00082923 pone el mes en que se hizo
+            writer.newLine(); // 00082923 salta la linea
+            writer.write("Anio: " + anio); // 00082923 pone el año en que se hizo
+            writer.newLine(); // 00082923 salta la linea
+            writer.write("Total Gastado: " + totalGastado); // 00082923 pone el total que se gasto
+            writer.newLine(); // 00082923 salta la
+            Alert alert = new Alert(Alert.AlertType.INFORMATION); // 00082923 declaramos alerta para avisar se creo
+            alert.setTitle("Guardado..."); // 00082923 titulo de alerta
+            alert.setHeaderText("Consulta almacenada"); // 00082923 encabezado de alerta
+            alert.setContentText("La consulta que realizaste se guardo correctamente, puedes encontrarla en reportes!"); // 00082923 texto de la alerta
+            alert.showAndWait(); // 00082923 muestra alerta hasta que se cierre
+        } catch (IOException e) { //00082923 cierre try catch
+            e.printStackTrace(); // 00082923 imprime la excepcion
+        }
+    }
 }
+
+

@@ -12,9 +12,9 @@ public class UserValidator {
         } else if ("abra3".equals(username)) {
             this.servername = "GERMAN";
             this.userPath = "";
-        } else if ("".equals(username)) {
-            this.servername = "";
-            this.userPath = "";
+        } else if ("Cristian Rodríguez".equals(username)) {
+            this.servername = "CRISTIAN-PC";
+            this.userPath = "C:/Users/Quick_SPCS/Desktop/Labs/ParcialFinal-POO/ProyectoBancoCentral/src/main/resources/org/uca/proyectobancocentral/Reportes/";
         } else if("".equals(username)){
             this.servername = "";
             this.userPath = "";
