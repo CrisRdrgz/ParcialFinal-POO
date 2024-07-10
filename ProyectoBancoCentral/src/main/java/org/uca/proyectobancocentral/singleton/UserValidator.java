@@ -12,10 +12,9 @@ public class UserValidator {
         } else if ("abra3".equals(username)) {
             this.servername = "GERMAN";
             this.userPath = "";
-        } else if ("DELL 7280".equals(username)) {
-            System.out.println("Entre");
-            this.servername = "DESKTOP-3OJ0C1N";
-            this.userPath = "C:/Users/DELL 7280/Documents/ParcialFinal-POO/ProyectoBancoCentral/src/main/resources/org/uca/proyectobancocentral/Reportes/";
+        } else if ("DELL 7280".equals(username)) { //00125123 username del dispositivo en sql
+            this.servername = "DESKTOP-3OJ0C1N"; //00125123 servername del dispositivo en sql
+            this.userPath = "C:/Users/DELL 7280/Documents/ParcialFinal-POO/ProyectoBancoCentral/src/main/resources/org/uca/proyectobancocentral/Reportes/"; //00125123 path de la maquina
         } else if("".equals(username)){
             this.servername = "";
             this.userPath = "";

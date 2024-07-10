@@ -61,39 +61,28 @@ public class CompraDAO {
         }
     }
 
-    public List<Compra> mostrarIDPorCompra(int clienteId, LocalDate fechaInicio, LocalDate fechaFin) {
-        List<Compra> compras = new ArrayList<>();
-        String query = "SELECT c.id, c.fecha, c.total, c.descripcion, c.id_tarjeta " +
-                "FROM Compra c " +
-                "JOIN Tarjeta t ON c.id_tarjeta = t.id " +
-                "WHERE t.id_cliente = ? " +
-                "AND c.fecha BETWEEN ? AND ?";
+    public List<Compra> mostrarIDPorCompra(int clienteId, LocalDate fechaInicio, LocalDate fechaFin) { //00125123 El método mostrarIDPorCompra toma tres parámetros: clienteId, fechaInicio, y fechaFin
+        List<Compra> compras = new ArrayList<>(); //00125123 crea una lista vacía de Compra llamada compras
+        String query = "SELECT c.id, c.fecha, c.total, c.descripcion, c.id_tarjeta " + "FROM Compra c " + "JOIN Tarjeta t ON c.id_tarjeta = t.id " + "WHERE t.id_cliente = ? " + "AND c.fecha BETWEEN ? AND ?"; //selecciona las compras que coinciden con el ID del cliente y están dentro del rango de fechas especificado. Se usa una unión (JOIN) para vincular las tablas Compra y Tarjeta.
         try {
-            //Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            //String url = "jdbc:sqlserver://DESKTOP-3OJ0C1N\\instanceName:1433;databaseName=BancoCentral;integratedSecurity=true;encrypt=false;";
-            //Connection connection = DriverManager.getConnection(url);
-            Connection connection = DatabaseConnection.getInstance().getConnection();
-            PreparedStatement pstmt = connection.prepareStatement(query);
-            pstmt.setInt(1, clienteId);
-            pstmt.setDate(2, Date.valueOf(fechaInicio));
-            pstmt.setDate(3, Date.valueOf(fechaFin));
-            ResultSet rs = pstmt.executeQuery();
-
-            while (rs.next()) {
-                int id = rs.getInt("id");
-                LocalDate fechaCompra = rs.getDate("fecha").toLocalDate();
-                double montoTotal = rs.getDouble("total");
-                String descripcion = rs.getString("descripcion");
-                int tarjetaId = rs.getInt("id_tarjeta");
-                Compra compra = new Compra(id, fechaCompra, montoTotal, descripcion, tarjetaId);
-                compras.add(compra);
+            Connection connection = DatabaseConnection.getInstance().getConnection(); //00125123 obtener instancia de la conexion a la base de datos
+            PreparedStatement pstmt = connection.prepareStatement(query); // 00125123 preparar la query para ejecutarla en la base de datos
+            pstmt.setInt(1, clienteId); //00125123 asignando el primer parametro, clienteId de la query
+            pstmt.setDate(2, Date.valueOf(fechaInicio)); //00125123 asignando el segundo parametro, clienteId de la query
+            pstmt.setDate(3, Date.valueOf(fechaFin)); //00125123 asignando el tercer parametro, clienteId de la query
+            ResultSet rs = pstmt.executeQuery(); //00125123 ejecutando la query y obteniendo la respuesta
+            while (rs.next()) { //00125123 iterando la respuesta
+                int id = rs.getInt("id"); //00125123 obteniendo el id y almacenandolo
+                LocalDate fechaCompra = rs.getDate("fecha").toLocalDate(); //00125123 obteniendo la fechaCompra y almacenandolo
+                double montoTotal = rs.getDouble("total"); //00125123 obteniendo el montoTotal y almacenandolo
+                String descripcion = rs.getString("descripcion"); //00125123 obteniendo la descripcion y almacenandolo
+                int tarjetaId = rs.getInt("id_tarjeta"); //00125123 obtenindo la tarjetaID y almacenandolo
+                Compra compra = new Compra(id, fechaCompra, montoTotal, descripcion, tarjetaId); //00125123 creando objeto compra con los datos anteriores
+                compras.add(compra); //00125123 agregando la compra a la lista de compras
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (SQLException e) { //00125123 controlando excepciones de sql
+            e.printStackTrace(); //00125123 retornando el StackTrace de la exepcion
         }
-//        catch (ClassNotFoundException e) {
-//            throw new RuntimeException(e);
-//        }
-        return compras;
+        return compras; //00125123 retornando compras
 }
 }

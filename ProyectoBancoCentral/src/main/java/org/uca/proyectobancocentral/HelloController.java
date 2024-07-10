@@ -50,29 +50,23 @@ public class HelloController{
     @FXML
     private TextField tfClienteId;
     @FXML
-    private TableView<Compra> tvComprasReporteA;
+    private TableView<Compra> tvComprasReporteA; //00125123 declarando tabla de la vista
     @FXML
-    private TableColumn<Compra, Integer> colIDReporteA;
+    private TableColumn<Compra, Integer> colIDReporteA; //00125123 declarando columna de id de la tabla A
     @FXML
-    private TableColumn<Compra, LocalDate> colFechaReporteA;
+    private TableColumn<Compra, LocalDate> colFechaReporteA; //00125123 declarando columna de fecha de la tabla A
     @FXML
-    private TableColumn<Compra, String> colDescripcionReporteA;
+    private TableColumn<Compra, String> colDescripcionReporteA; //00125123 declarando columna de la descripcion de la tabla A
     @FXML
-    private TableColumn<Compra, Double> colTotalReporteA;
+    private TableColumn<Compra, Double> colTotalReporteA; //00125123 declarando columna del total de la tabla A
     @FXML
-    private TableColumn<Compra, Integer> colIDTarjetaReporteA;
+    private TableColumn<Compra, Integer> colIDTarjetaReporteA; //00125123 declarando columna de la tarjeta de la tabla A
     @FXML
-    private Button btnBuscarReporteA;
+    private TextField txIDReporteA; //00125123 declarando el text field para el id
     @FXML
-    private Button btnGuardarArchivoReporteA;
+    private DatePicker dtFechaReporteA; //00125123 declarando el date picker para seleccion de fecha inicio
     @FXML
-    private TextField txIDReporteA;
-    @FXML
-    private DatePicker dtFechaReporteA;
-    @FXML
-    private DatePicker dtFechaFinalReporteA;
-
-
+    private DatePicker dtFechaFinalReporteA; //00125123 declarando el date picker para seleccion de fecha final
 
     private ClienteDAO clienteDAO = new ClienteDAO();
     private TarjetaDAO tarjetaDAO = new TarjetaDAO();
@@ -689,33 +683,37 @@ public class HelloController{
 
     @FXML
     private void mostrarComprasPorID() {
-        int clienteId = Integer.parseInt(txIDReporteA.getText());
-        LocalDate inicio = dtFechaReporteA.getConverter().fromString(dtFechaReporteA.getEditor().getText());
-        LocalDate fin = dtFechaFinalReporteA.getConverter().fromString(dtFechaFinalReporteA.getEditor().getText());
-        List<Compra> compras = compraDAO.mostrarIDPorCompra(clienteId, inicio, fin);
-        System.out.println(compras);
-        tvComprasReporteA.getItems().setAll(compras);
+        int clienteId = Integer.parseInt(txIDReporteA.getText()); //00125123 Obtiene el ID del cliente del campo de texto txIDReporteA
+        LocalDate inicio = dtFechaReporteA.getConverter().fromString(dtFechaReporteA.getEditor().getText()); //00125123 Obtiene la fecha de inicio del campo de fecha dtFechaReporteA
+        LocalDate fin = dtFechaFinalReporteA.getConverter().fromString(dtFechaFinalReporteA.getEditor().getText()); //00125123 Obtiene la fecha de fin del campo de fecha dtFechaFinalReporteA
+        List<Compra> compras = compraDAO.mostrarIDPorCompra(clienteId, inicio, fin);  //00125123 Llama al método mostrarIDPorCompra del objeto compraDAO para obtener la lista de compras
+        tvComprasReporteA.getItems().setAll(compras); //00125123 Establece la lista de compras en la tabla tvComprasReporteA
     }
 
     @FXML
     private void handleBotonGuardarArchivoReporteA(){
-        ObservableList<Compra> compras = tvComprasReporteA.getItems();
-        if(compras.isEmpty()){
+        ObservableList<Compra> compras = tvComprasReporteA.getItems(); //00125123 Obtiene las compras de la tabla tvComprasReporteA
+        if(compras.isEmpty()){ //00125123 Si la lista de compras está vacía, retorna sin hacer nada
             return;
         }
-        String ahora = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd_HH-mm-ss"));
+        String ahora = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd_HH-mm-ss"));  //00125123 Obtiene la fecha y hora actual en el formato "yyyy-MM-dd_HH-mm-ss"
         System.out.println(ahora);
-        System.out.println(System.getProperty("user.dir"));
-        String path = UserValidator.getInstance().getUserPath() + "ReporteA " + ahora + ".txt";
-
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(path))) {
-            for (Compra compra : compras) {
-                String line = String.format("ID: %d, Fecha: %s, Total: %f, Descripcion: %s, ID Tarjeta: %d", compra.getId(), compra.getFechaCompra().toString(), compra.getMontoTotal(), compra.getDescripcion(), compra.getTarjetaId());
-                writer.write(line);
-                writer.newLine();
+        System.out.println(System.getProperty("user.dir")); //00125123 Imprime el directorio de trabajo actual
+        String path = UserValidator.getInstance().getUserPath() + "ReporteA " + ahora + ".txt"; //00125123 Construye la ruta del archivo utilizando el path del usuario y la fecha/hora actual
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(path))) { //00125123 Intenta escribir las compras en el archivo
+            for (Compra compra : compras) { //00125123 Itera sobre cada compra en la lista
+                String line = String.format("ID: %d, Fecha: %s, Total: %f, Descripcion: %s, ID Tarjeta: %d", //00125123 Construye una línea de texto con los detalles de la compra
+                        compra.getId(),
+                        compra.getFechaCompra().toString(),
+                        compra.getMontoTotal(),
+                        compra.getDescripcion(),
+                        compra.getTarjetaId());
+                writer.write(line); //00125123 Escribe la línea en el archivo
+                writer.newLine(); //00125123 Escribe la línea en el archivo
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            e.printStackTrace(); //00125123 Imprime el stack trace si ocurre una excepción de entrada/salida
         }
     }
+
 }
