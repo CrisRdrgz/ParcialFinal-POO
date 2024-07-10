@@ -48,7 +48,25 @@ public class HelloController{
     @FXML
     private TableColumn<Tarjeta, String> colTipoTarjeta;//00011223 declaro una columna de la table viwe que mostrara de que tipo es la tarjeta
     @FXML
+
     private TextField tfClienteId;//0011223 declaro un textfield donde se ingresara el id del cliente para ver sus tarjetas
+    @FXML
+    private TableView<Compra> tvComprasReporteA;
+    @FXML
+    private TableColumn<Compra, String> colIDReporteA;
+    @FXML
+    private TableColumn<Compra, String> colClienteCompraReporteA;
+    @FXML
+    private Button btnBuscarReporteA;
+    @FXML
+    private Button btnGuardarArchivoReporteA;
+    @FXML
+    private TextField txIDReporteA;
+    @FXML
+    private DatePicker dtFechaInicioReporteA;
+    @FXML
+    private DatePicker dtFechaFinalReporteA;
+
 
     private ClienteDAO clienteDAO = new ClienteDAO();
     private TarjetaDAO tarjetaDAO = new TarjetaDAO();
@@ -65,6 +83,9 @@ public class HelloController{
         cbReporteD.getItems().addAll("Visa", "MasterCard", "American Express", "Discover", "Diners Club");
         colNumeroTarjeta.setCellValueFactory(new PropertyValueFactory<>("numeroTarjeta"));//00011223  valores para colNumeroTarjeta para que use la propiedad numeroTarjeta de los objetos Tarjeta
         colTipoTarjeta.setCellValueFactory(new PropertyValueFactory<>("tipoTarjeta"));//00011223 valores para colTipoTarjeta para que use la propiedad tipoTarjeta de los objetos Tarjeta
+        colIDReporteA.setCellValueFactory(new PropertyValueFactory<>("ID"));
+        colClienteCompraReporteA.setCellValueFactory(new PropertyValueFactory<>("listaCompraCliente"));
+
 
         tvReporteD.getItems().clear();
 
@@ -673,5 +694,15 @@ public class HelloController{
             }
         } catch (IOException e) {e.printStackTrace();//imprime si ocurre un error
         }
+    }
+
+    @FXML
+    private void mostrarComprasPorID() {
+        int clienteId = Integer.parseInt(txIDReporteA.getText());
+        LocalDate inicio = dtFechaInicioReporteA.getConverter().fromString(dtFechaInicioReporteA.getEditor().getText());
+        LocalDate fin = dtFechaFinalReporteA.getConverter().fromString(dtFechaFinalReporteA.getEditor().getText());
+        List<Compra> compras = compraDAO.mostrarIDPorCompra(clienteId, inicio, fin);
+        System.out.println(compras);
+        tvComprasReporteA.getItems().setAll(compras);
     }
 }

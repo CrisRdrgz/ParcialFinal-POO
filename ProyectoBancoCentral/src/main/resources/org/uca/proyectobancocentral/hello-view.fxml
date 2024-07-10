@@ -3,24 +3,45 @@
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<VBox alignment="CENTER" prefHeight="600.0" prefWidth="800.0" spacing="20.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.2-ea" fx:controller="org.uca.proyectobancocentral.HelloController">
+<VBox alignment="CENTER" prefHeight="600.0" prefWidth="800.0" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.uca.proyectobancocentral.HelloController">
   <TabPane prefHeight="600.0" prefWidth="800.0">
-      <Tab text="Reporte A" closable="false">
-          <VBox alignment="CENTER" spacing="10.0">
-
-          </VBox>
+      <Tab closable="false" text="Reporte A">
+          <VBox alignment="CENTER" spacing="10.0" style="-fx-background-color: E8E6D9;">
+            <children>
+               <Label text="Lista De Compras De Clientes" textAlignment="CENTER">
+                  <font>
+                     <Font size="14.0" />
+                  </font>
+               </Label>
+               <Label text="Ingresa el ID del Cliente" />
+               <TextField fx:id="txIDReporteA" alignment="TOP_CENTER" prefHeight="26.0" prefWidth="715.0" promptText="ID Cliente" />
+               <Label text="Ingresa la fecha de la compra que deseas visualizar" />
+               <Label text="Fecha desde:" />
+               <DatePicker fx:id="dtFechaReporteA" prefHeight="26.0" prefWidth="178.0" promptText="Date" />
+               <Label text="Fecha Hasta:" />
+               <DatePicker promptText="Date" />
+               <Button fx:id="btnBuscarReporteA" mnemonicParsing="false" text="Buscar" />
+               <TableView fx:id="tvComprasReporteA" prefHeight="233.0" prefWidth="800.0">
+                 <columns>
+                   <TableColumn fx:id="colIDReporteA" prefWidth="94.5999892950058" text="ID" />
+                   <TableColumn fx:id="colClienteCompraReporteA" prefWidth="671.7999649047852" text="Lista de Clientes de sus Compras Realizadas" />
+                 </columns>
+               </TableView>
+               <Button fx:id="btnGuardarArchivoReporteA" mnemonicParsing="false" text="Guradar Archivo" />
+            </children></VBox>
       </Tab>
-    <Tab text="Reporte B" closable="false">
+    <Tab closable="false" text="Reporte B">
       <VBox alignment="CENTER" spacing="10.0">
       </VBox>
     </Tab>
-    <Tab text="Reporte C" closable="false">
+    <Tab closable="false" text="Reporte C">
       <VBox alignment="CENTER" spacing="10.0">
           <Label text="Tarjetas asociadas a un cliente" />
           <Label text="ID Cliente" />
           <TextField fx:id="tfClienteId" prefHeight="26.0" prefWidth="778.0" promptText="Ingrese ID del cliente" />
-          <Button text="Buscar" onAction="#mostrarTarjetasPorId" />
+          <Button onAction="#mostrarTarjetasPorId" text="Buscar" />
           <TableView fx:id="tvTarjetas" prefHeight="300.0" prefWidth="600.0">
               <columns>
                   <TableColumn fx:id="colNumeroTarjeta" prefWidth="300.0" text="Numero de Tarjeta" />
@@ -30,23 +51,23 @@
           <Button text="Guardar archivo" onAction="#guardarArchivoReporteC"/>
       </VBox>
     </Tab>
-    <Tab text="Reporte D" closable="false">
+    <Tab closable="false" text="Reporte D">
       <VBox alignment="CENTER" spacing="10.0">
-          <Label text="Reporte D"/>
-          <Label text="Clientes por facilitador"/>
-          <ComboBox fx:id="cbReporteD" prefWidth="200.0"/>
-          <Button text="Seleccionar" onAction="#handleBotonSeleccionarReporteD"/>
+          <Label text="Reporte D" />
+          <Label text="Clientes por facilitador" />
+          <ComboBox fx:id="cbReporteD" prefWidth="200.0" />
+          <Button onAction="#handleBotonSeleccionarReporteD" text="Seleccionar" />
           <TableView fx:id="tvReporteD" prefHeight="300.0" prefWidth="600.0">
               <columns>
-                  <TableColumn fx:id="colIdReporteD" text="ID" prefWidth="40.0"/>
-                  <TableColumn fx:id="colNombreReporteD" text="Nombre" prefWidth="200.0"/>
-                  <TableColumn fx:id="colDireccionReporteD" text="Direccion" prefWidth="225.0"/>
-                  <TableColumn fx:id="colTelefonoReporteD" text="Telefono" prefWidth="90.0"/>
-                  <TableColumn fx:id="colCantComprasReporteD" text="Cantidad compras" prefWidth="125.0"/>
-                  <TableColumn fx:id="colTotalGastadoReporteD" text="Total gastado ($)" prefWidth="120.0"/>
+                  <TableColumn fx:id="colIdReporteD" prefWidth="40.0" text="ID" />
+                  <TableColumn fx:id="colNombreReporteD" prefWidth="200.0" text="Nombre" />
+                  <TableColumn fx:id="colDireccionReporteD" prefWidth="225.0" text="Direccion" />
+                  <TableColumn fx:id="colTelefonoReporteD" prefWidth="90.0" text="Telefono" />
+                  <TableColumn fx:id="colCantComprasReporteD" prefWidth="125.0" text="Cantidad compras" />
+                  <TableColumn fx:id="colTotalGastadoReporteD" prefWidth="120.0" text="Total gastado ($)" />
               </columns>
           </TableView>
-          <Button text="Guardar archivo" onAction="#handleBotonGuardarArchivoReporteD"/>
+          <Button onAction="#handleBotonGuardarArchivoReporteD" text="Guardar archivo" />
       </VBox>
     </Tab>
       <VBox.margin>
